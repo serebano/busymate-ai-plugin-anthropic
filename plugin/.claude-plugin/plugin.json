@@ -11,6 +11,7 @@
   "homepage": "https://busymate.ai",
   "repository": "https://github.com/serebano/busymate-ai-plugin-anthropic",
   "license": "MIT",
+  "privacyPolicyUrl": "https://busymate.ai/apps/privacy",
   "keywords": [
     "customer support",
     "inbox",
