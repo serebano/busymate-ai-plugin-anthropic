@@ -29,7 +29,7 @@ const prose = readme.replace(/```[\s\S]*?```/g, '');
 const words = prose.split(/\s+/).filter((w) => /\w/.test(w)).length;
 if (words < 40) fail(`plugin/README.md: ${words} words, at least 40 needed outside code blocks`);
 for (const url of Object.values(mcp.mcpServers ?? {}).map((s) => s.url)) if (!readme.includes(url)) fail(`plugin/README.md must disclose the MCP server ${url}`);
-for (const link of ['https://busymate.ai/privacy', 'https://busymate.ai/terms']) if (!readme.includes(link)) fail(`plugin/README.md must link ${link}`);
+for (const link of ['https://busymate.ai/apps/privacy', 'https://busymate.ai/apps/terms']) if (!readme.includes(link)) fail(`plugin/README.md must link ${link}`);
 if (!fs.existsSync(path.join(PLUGIN, 'LICENSE')) && !manifest.license) fail('plugin: LICENSE file or license field required');
 
 // Remote MCP servers only, https, no headers or secrets.

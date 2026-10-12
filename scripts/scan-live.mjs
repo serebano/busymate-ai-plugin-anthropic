@@ -50,7 +50,7 @@ try {
     if (!(got.title || got.annotations?.title)) problems.push(`${want.name}: no title`);
     const d = got.description ?? '';
     if (!d.trim()) problems.push(`${want.name}: empty description`);
-    if (/#\d{2,}|busymate-ai#|\b(NEVER|ALWAYS)\b|\beve\b|chatgpt|devtools/i.test(d)) problems.push(`${want.name}: description has internal references or steering`);
+    if (/#\d{2,}|busymate-ai#|\beve\b|chatgpt|devtools/i.test(d) || /\b(NEVER|ALWAYS)\b/.test(d)) problems.push(`${want.name}: description has internal references or steering`);
   }
   for (const name of live.keys()) if (!spec.tools.some((t) => t.name === name)) problems.push(`${name}: live but not declared (the profile must equal the declared tools)`);
 } catch (err) {
