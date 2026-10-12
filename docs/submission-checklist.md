@@ -19,7 +19,8 @@ Two submissions from the same organization: first the **MCP connector** (by URL)
 
 ## Account
 
-- [ ] H Submitting needs a paid Claude plan. On Team or Enterprise, an Owner submits.
+- [x] H Submitting needs a paid Claude plan. Busymate is on the **Team** plan, which qualifies.
+- [ ] H A Team **Owner** opens the developer portal and submits both the connector and the plugin. A member without the Owner role cannot submit.
 - [ ] H The organization's GitHub account is connected on claude.ai and can push to this repo. For a private repo, the Claude GitHub App must be installed and the source-upload consent given.
 - [ ] H The repo is public before the plugin goes live.
 

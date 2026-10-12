@@ -54,7 +54,7 @@ Sign in with your Busymate AI account. The connector sees only the workspaces yo
 |---|---|---|
 | 1 | Which customer conversations need my attention today? | `list_tenants`, `get_tenant_inbox_counts`, `list_tenant_interventions`. Lists the open handoffs by customer first name, topic and wait time. |
 | 2 | Reply to the warranty question saying we will ship a replacement part on Monday, then mark it resolved. | `get_tenant_intervention`, then `reply_tenant_intervention` and `resolve_tenant_intervention`, each approved in Claude. Confirms both. |
-| 3 | Find the latest unanswered email about delivery and answer that orders ship within 3 days. | `search_email`, `get_email_thread`, then `reply_email` after approval. |
+| 3 | Find the latest unanswered email about delivery and answer that orders ship within 3 days. | `search_email`, `get_email_thread`, then `send_email_reply` after approval. |
 | 4 | What does our knowledge base say about return windows? | `search_knowledge`. Quotes the policy and names the source. |
 | 5 | Give me the code to put the assistant on my website. | `get_install_snippet`. Returns the snippet and where to paste it. |
 
