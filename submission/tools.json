@@ -131,7 +131,7 @@
       }
     },
     {
-      "name": "reply_email",
+      "name": "send_email_reply",
       "summary": "Sends an email reply to the customer on an existing thread.",
       "annotations": {
         "readOnlyHint": false,
