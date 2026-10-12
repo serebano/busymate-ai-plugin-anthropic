@@ -13,9 +13,9 @@ Draft copy for the **MCP connector** submission at [claude.ai/directory/manage](
 | Auth | OAuth 2.1 with PKCE and dynamic client registration; lazy auth (tools are listed before sign-in, and calls need sign-in) |
 | Categories (1–5) | Customer support; Productivity; Business. Use the closest portal names. |
 | Docs | `https://busymate.ai/docs/guides/claude` (to be published) |
-| Privacy | `https://busymate.ai/privacy` |
-| Terms | `https://busymate.ai/terms` |
-| Support | `https://busymate.ai/contact` · hi@busymate.ai |
+| Privacy | `https://busymate.ai/apps/privacy` |
+| Terms | `https://busymate.ai/apps/terms` |
+| Support | `https://busymate.ai/apps/support` · hi@busymate.ai |
 | Icon | `plugin/assets/logo.png` (512×512 PNG) |
 
 ## One-liner (200 characters max)
