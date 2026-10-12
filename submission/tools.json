@@ -1,0 +1,150 @@
+{
+  "_note": "Proposed v1 tool profile. The authoritative definitions live on the server (busymate-ai-src); CI compares this file with the live tools/list. Claude rule: every tool that modifies data is destructiveHint:true.",
+  "serverUrl": "https://busymate.ai/mcp/claude",
+  "tools": [
+    {
+      "name": "list_tenants",
+      "summary": "Lists the Busymate workspaces the signed-in user belongs to.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_tenant",
+      "summary": "Reads one workspace's name, website and assistant status.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_tenant_inbox_counts",
+      "summary": "Counts open conversations and handoff requests in a workspace.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_tenant_conversations",
+      "summary": "Lists recent customer conversations in a workspace, paginated.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_tenant_conversation_transcript",
+      "summary": "Reads the messages of one customer conversation.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_tenant_interventions",
+      "summary": "Lists handoff requests where the assistant asked for a person.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_tenant_intervention",
+      "summary": "Reads one handoff request and its conversation context.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "reply_tenant_intervention",
+      "summary": "Sends a reply from the business to the customer in a handoff conversation.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "resolve_tenant_intervention",
+      "summary": "Marks a handoff request resolved and hands the conversation back to the assistant.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "add_tenant_intervention_note",
+      "summary": "Adds an internal note to a handoff request; customers never see it.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_tenant_knowledge_sources",
+      "summary": "Lists the knowledge sources the assistant answers from.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "search_knowledge",
+      "summary": "Searches the workspace knowledge and returns matching passages with their source.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "add_tenant_knowledge_source",
+      "summary": "Adds a public web page as a knowledge source; Busymate fetches and indexes it.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_email_threads",
+      "summary": "Lists customer email threads in the workspace inbox.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "search_email",
+      "summary": "Searches customer email threads by text, sender or subject.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_email_thread",
+      "summary": "Reads the messages of one email thread.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "reply_email",
+      "summary": "Sends an email reply to the customer on an existing thread.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_install_snippet",
+      "summary": "Returns the script snippet that installs the assistant on the business's website.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "busymate",
+  "description": "Busymate AI plugins for Claude.",
+  "owner": {
+    "name": "Busymate AI",
+    "email": "hi@busymate.ai"
+  },
+  "plugins": [
+    {
+      "name": "busymate-ai",
+      "source": "./plugin",
+      "description": "Review and answer your Busymate AI customer conversations, handoff requests and email, and search your workspace knowledge."
+    }
+  ]
+}

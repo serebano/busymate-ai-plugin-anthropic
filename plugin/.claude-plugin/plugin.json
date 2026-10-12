@@ -1,0 +1,15 @@
+{
+  "name": "busymate-ai",
+  "displayName": "Busymate AI",
+  "version": "1.0.0",
+  "description": "Review and answer your Busymate AI customer conversations, handoff requests and email, and search your workspace knowledge.",
+  "author": {
+    "name": "Busymate AI",
+    "email": "hi@busymate.ai",
+    "url": "https://busymate.ai"
+  },
+  "homepage": "https://busymate.ai",
+  "repository": "https://github.com/serebano/busymate-ai-plugin-anthropic",
+  "license": "MIT",
+  "keywords": ["customer support", "inbox", "help desk", "knowledge base"]
+}

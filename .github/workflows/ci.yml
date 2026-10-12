@@ -1,0 +1,28 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/validate.mjs
+  # Runs only when enabled, so a missing token shows as a skipped job, not a green scan.
+  scan-live:
+    if: ${{ vars.SCAN_LIVE == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/scan-live.mjs
+      - run: node scripts/scan-live.mjs
+        env:
+          BUSYMATE_MCP_TOKEN: ${{ secrets.BUSYMATE_MCP_TOKEN }}
