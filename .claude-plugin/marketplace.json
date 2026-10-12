@@ -9,7 +9,7 @@
     {
       "name": "busymate-ai",
       "source": "./plugin",
-      "description": "Review and answer your Busymate AI customer conversations, handoff requests and email, and search your workspace knowledge."
+      "description": "Review and answer your Busymate AI customer conversations and handoff requests, and search your workspace knowledge."
     }
   ]
 }
