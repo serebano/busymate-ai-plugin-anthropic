@@ -1,10 +1,382 @@
 {
-  "_note": "Proposed v1 tool profile. The authoritative definitions live on the server (busymate-ai-src); CI compares this file with the live tools/list. Claude rule: every tool that modifies data is destructiveHint:true.",
-  "serverUrl": "https://busymate.ai/mcp/claude",
+  "_note": "The tools of the Busymate AI MCP server at https://busymate.ai/mcp as a signed-in workspace admin sees them (the same list before sign-in; lazy auth). Generated from the server's catalogue; CI compares it with the live tools/list. Claude rule: reads are readOnlyHint:true, destructiveHint:false; every tool that modifies data is destructiveHint:true.",
+  "serverUrl": "https://busymate.ai/mcp",
   "tools": [
     {
+      "name": "list_artifacts",
+      "title": "List Artifacts",
+      "summary": "List Artifacts.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_artifact",
+      "title": "Get Artifact",
+      "summary": "Get Artifact.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "create_artifact",
+      "title": "Create Artifact",
+      "summary": "Create Artifact.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "update_artifact",
+      "title": "Update Artifact",
+      "summary": "Update an artifact you own (or any, as an operator) by slug.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_artifact_visibility",
+      "title": "Set Artifact Visibility",
+      "summary": "Set Artifact Visibility.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "delete_artifact",
+      "title": "Delete Artifact",
+      "summary": "Permanently delete an artifact you own (or any, as an operator) by slug.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "read_artifact",
+      "title": "Read Artifact",
+      "summary": "Read ONE artifact the way an LLM agent should.",
+      "signIn": "optional",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "create_artifact_share_link",
+      "title": "Create Artifact Share Link",
+      "summary": "Create Artifact Share Link.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "revoke_artifact_share_links",
+      "title": "Revoke Artifact Share Links",
+      "summary": "Revoke Artifact Share Links.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_artifact_share_links",
+      "title": "List Artifact Share Links",
+      "summary": "List the share links of an artifact you own (or any, as an operator).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_artifact_comments",
+      "title": "List Artifact Comments",
+      "summary": "List Artifact Comments.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "add_artifact_comment",
+      "title": "Add Artifact Comment",
+      "summary": "Add a comment to an artifact you can VIEW.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "reply_artifact_comment",
+      "title": "Reply Artifact Comment",
+      "summary": "Reply INTO an existing comment thread (by comment_id or thread_root_id).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "resolve_artifact_comment",
+      "title": "Resolve Artifact Comment",
+      "summary": "Resolve Artifact Comment.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_artifact_comment_ai_activation",
+      "title": "Set Artifact Comment Ai Activation",
+      "summary": "Set Artifact Comment Ai Activation.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_store_apps",
+      "title": "List Store Apps",
+      "summary": "List apps in the bmai App Store (busymate.ai/store).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_store_app",
+      "title": "Get Store App",
+      "summary": "Get ONE bmai App Store app by slug plus its versions, gallery media, pricing plans, locales, and recent published reviews.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_store_categories",
+      "title": "List Store Categories",
+      "summary": "List the bmai App Store category taxonomy.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_store_installs",
+      "title": "List Store Installs",
+      "summary": "List store app installs you can see.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_store_app_stats",
+      "title": "Get Store App Stats",
+      "summary": "Get an app's analytics rollup (the developer of the app, or an operator).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "upsert_store_developer",
+      "title": "Upsert Store Developer",
+      "summary": "Create or update your bmai App Store publisher account (self-serve: owner = you).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "upsert_store_app",
+      "title": "Upsert Store App",
+      "summary": "Upsert Store App.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "upsert_store_app_version",
+      "title": "Upsert Store App Version",
+      "summary": "Upsert Store App Version.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "submit_store_app",
+      "title": "Submit Store App",
+      "summary": "Submit Store App.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_store_app_pricing",
+      "title": "Set Store App Pricing",
+      "summary": "Set Store App Pricing.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_store_app_media",
+      "title": "Set Store App Media",
+      "summary": "Set Store App Media.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_store_app_locale",
+      "title": "Set Store App Locale",
+      "summary": "Upsert one locale of your app's listing copy (fallback is the app primary_locale).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "install_store_app",
+      "title": "Install Store App",
+      "summary": "Install Store App.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "uninstall_store_app",
+      "title": "Uninstall Store App",
+      "summary": "Uninstall a store app install (the installer, or an operator).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "create_store_review",
+      "title": "Create Store Review",
+      "summary": "Create or update YOUR review of a store app (one review per app+author).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "reply_store_review",
+      "title": "Reply Store Review",
+      "summary": "Reply to a review on YOUR app (the app's developer, or an operator).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_tenant_roles",
+      "title": "List Workspace Roles",
+      "summary": "List Workspace Roles.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "create_tenant_role",
+      "title": "Create Workspace Role",
+      "summary": "Create Workspace Role.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "update_tenant_role",
+      "title": "Update Workspace Role",
+      "summary": "Update Workspace Role.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "delete_tenant_role",
+      "title": "Delete Workspace Role",
+      "summary": "Delete Workspace Role.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "assign_tenant_role",
+      "title": "Assign Workspace Role",
+      "summary": "Assign Workspace Role.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "preview_tenant_effective_permissions",
+      "title": "Preview Workspace Effective Permissions",
+      "summary": "Preview Workspace Effective Permissions.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
       "name": "list_tenants",
-      "summary": "Lists the Busymate workspaces the signed-in user belongs to.",
+      "title": "List Workspaces",
+      "summary": "List the workspaces YOU can see.",
+      "signIn": "required",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false
@@ -12,63 +384,869 @@
     },
     {
       "name": "get_tenant",
-      "summary": "Reads one workspace's name, website and assistant status.",
+      "title": "Get Workspace",
+      "summary": "ONE workspace by id.",
+      "signIn": "required",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false
       }
     },
     {
-      "name": "get_tenant_inbox_counts",
-      "summary": "Counts open conversations and handoff requests in a workspace.",
+      "name": "get_tenant_integration",
+      "title": "Get Workspace Integration",
+      "summary": "Get Workspace Integration.",
+      "signIn": "required",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false
       }
     },
     {
-      "name": "list_tenant_conversations",
-      "summary": "Lists recent customer conversations in a workspace, paginated.",
-      "annotations": {
-        "readOnlyHint": true,
-        "destructiveHint": false
-      }
-    },
-    {
-      "name": "get_tenant_conversation_transcript",
-      "summary": "Reads the messages of one customer conversation.",
-      "annotations": {
-        "readOnlyHint": true,
-        "destructiveHint": false
-      }
-    },
-    {
-      "name": "list_tenant_interventions",
-      "summary": "Lists handoff requests where the assistant asked for a person.",
-      "annotations": {
-        "readOnlyHint": true,
-        "destructiveHint": false
-      }
-    },
-    {
-      "name": "get_tenant_intervention",
-      "summary": "Reads one handoff request and its conversation context.",
-      "annotations": {
-        "readOnlyHint": true,
-        "destructiveHint": false
-      }
-    },
-    {
-      "name": "reply_tenant_intervention",
-      "summary": "Sends a reply from the business to the customer in a handoff conversation.",
+      "name": "upsert_tenant_identity_provider",
+      "title": "Upsert Workspace Identity Provider",
+      "summary": "Create or update one workspace-owned visitor JWT identity provider for identified white-label launches.",
+      "signIn": "required",
       "annotations": {
         "readOnlyHint": false,
         "destructiveHint": true
       }
     },
     {
-      "name": "resolve_tenant_intervention",
-      "summary": "Marks a handoff request resolved and hands the conversation back to the assistant.",
+      "name": "test_tenant_identity_provider",
+      "title": "Test Workspace Identity Provider",
+      "summary": "TEST the identified launch for one registered workspace visitor-identity provider.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "disable_tenant_identity_provider",
+      "title": "Disable Workspace Identity Provider",
+      "summary": "Disable (never delete) one workspace-owned visitor identity provider and revoke its delegated-account-tool opt-in.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_tenant_members",
+      "title": "List Workspace Members",
+      "summary": "The member roster of a workspace.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "add_tenant_member",
+      "title": "Add Workspace Member",
+      "summary": "Add a user to a workspace.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "invite_tenant_member",
+      "title": "Invite Workspace Member",
+      "summary": "Invite Workspace Member.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_tenant_invitations",
+      "title": "List Workspace Invitations",
+      "summary": "This workspace's invitations.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "revoke_tenant_invitation",
+      "title": "Revoke Workspace Invitation",
+      "summary": "Revoke Workspace Invitation.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "remove_tenant_member",
+      "title": "Remove Workspace Member",
+      "summary": "Remove a user's membership from a workspace.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_tenant_member_role",
+      "title": "Set Workspace Member Role",
+      "summary": "Set Workspace Member Role.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "request_tenant_custom_domain",
+      "title": "Request Workspace Custom Domain",
+      "summary": "Request Workspace Custom Domain.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "verify_tenant_custom_domain",
+      "title": "Verify Workspace Custom Domain",
+      "summary": "Verify a workspace custom-domain claim against the exact DNS TXT challenge and queue TLS/routing provisioning.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "remove_tenant_custom_domain",
+      "title": "Remove Workspace Custom Domain",
+      "summary": "Remove a workspace-owned custom domain through the proof-gated customer lifecycle.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_tenant_support_resources",
+      "title": "List Workspace Support Resources",
+      "summary": "Deprecated compatibility name; use list_tenant_resources.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "publish_tenant_runtime",
+      "title": "Publish Workspace Runtime",
+      "summary": "Publish Workspace Runtime.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "upsert_tenant_support_connector",
+      "title": "Upsert Workspace Support Connector",
+      "summary": "Deprecated compatibility name; use upsert_tenant_connector.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "provision_partner_tenant",
+      "title": "Provision Partner Workspace",
+      "summary": "Provision Partner Workspace.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "add_tenant_embed_origin",
+      "title": "Add Workspace Embed Origin",
+      "summary": "Add Workspace Embed Origin.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_widget_open_page",
+      "title": "Get Widget Open Page",
+      "summary": "Get Widget Open Page.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_widget_open_page",
+      "title": "Set Widget Open Page",
+      "summary": "Turn a workspace's \"Open <page>?\" offer on or off.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_tenant_usage",
+      "title": "Get Workspace Usage",
+      "summary": "Get Workspace Usage.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "suspend_tenant",
+      "title": "Suspend Workspace",
+      "summary": "Suspend Workspace.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "delete_tenant",
+      "title": "Delete Workspace",
+      "summary": "Delete Workspace.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "export_tenant_customer_data",
+      "title": "Export Workspace Customer Data",
+      "summary": "GDPR customers/data_request.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "redact_tenant_customer",
+      "title": "Redact Workspace Customer",
+      "summary": "GDPR customers/redact.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_quickstart_setup",
+      "title": "Get Quickstart Setup",
+      "summary": "Read the pre-fill for the \"Keep this assistant\" setup screen off a scan id from busymate.ai/try (the Console /console/setup?quickstart=<id> screen's own read).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "provision_quickstart_tenant",
+      "title": "Provision Quickstart Workspace",
+      "summary": "Provision Quickstart Workspace.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_api_key_scopes",
+      "title": "List API Key Scopes",
+      "summary": "List API Key Scopes.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_tenant_account_tools_policy",
+      "title": "Get Workspace Account Tools Policy",
+      "summary": "Get Workspace Account Tools Policy.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_tenant_account_tools_policy",
+      "title": "Set Workspace Account Tools Policy",
+      "summary": "Set Workspace Account Tools Policy.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "search_knowledge",
+      "title": "Search Knowledge",
+      "summary": "Search the workspace's existing hybrid knowledge index.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_kb_widget_config",
+      "title": "Get Kb Widget Config",
+      "summary": "Read the independent spotlight knowledge widget configuration and revision.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_kb_widget_config",
+      "title": "Set Kb Widget Config",
+      "summary": "Save spotlight knowledge widget settings immediately, using an expected revision.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_tenant_config",
+      "title": "Get Workspace Config",
+      "summary": "Read a workspace's effective AI model, feature, quota, and operator-ceiling configuration.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_my_notification_prefs",
+      "title": "Get My Notification Prefs",
+      "summary": "Get My Notification Prefs.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_my_notification_prefs",
+      "title": "Set My Notification Prefs",
+      "summary": "Patch YOUR Busymate AI notification preferences.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_my_push_subscriptions",
+      "title": "List My Push Subscriptions",
+      "summary": "List My Push Subscriptions.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_my_notifications",
+      "title": "List My Notifications",
+      "summary": "List YOUR Busymate AI notifications (hand-off requested/accepted/escalated, customer message, connector failure, SLA missed, test).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "mark_my_notification_read",
+      "title": "Mark My Notification Read",
+      "summary": "Mark ONE of YOUR Busymate AI notifications read/archived, or ALL of them with all:true.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "remove_my_push_subscription",
+      "title": "Remove My Push Subscription",
+      "summary": "Remove ONE of YOUR browser push endpoints by id (from list_my_push_subscriptions); that browser stops receiving Console notifications until it re-enables them.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "send_test_notification",
+      "title": "Send Test Notification",
+      "summary": "Send Test Notification.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "adopt_session",
+      "title": "Adopt Session",
+      "summary": "Adopt Session.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_tenant_config",
+      "title": "Set Workspace Config",
+      "summary": "Set a workspace's effective AI model, feature, chooser, default-model, and quota configuration.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_tenant_branding",
+      "title": "Set Workspace Branding",
+      "summary": "Set Workspace Branding.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "connect_slack_channel",
+      "title": "Connect Slack Channel",
+      "summary": "Connect (or reconnect) this workspace's own Slack app as a live customer channel.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_slack_channel_scope",
+      "title": "Set Slack Channel Scope",
+      "summary": "Change an already-connected Slack channel's scope (dm/mention/both) and/or its channel allowlist, without touching its secrets.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "disable_slack_channel",
+      "title": "Disable Slack Channel",
+      "summary": "Disable this workspace's Slack channel (keeps the row and its secret names for a later reconnect, stops dispatch).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "resolve_tenant_limits",
+      "title": "Resolve Workspace Limits",
+      "summary": "Resolve a workspace's effective quota limits and live usage counters.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "resolve_tenant_model_policy",
+      "title": "Resolve Workspace Model Policy",
+      "summary": "Resolve the model chooser policy exactly as the Busymate AI runtime sees it.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "bmai_usage_stats",
+      "title": "Bmai Usage Stats",
+      "summary": "Read platform or workspace Busymate AI token, request, provider/model, and cost usage windows.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_tenant_voice",
+      "title": "Set Workspace Voice",
+      "summary": "Set Workspace Voice.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "resolve_tenant_voice",
+      "title": "Resolve Workspace Voice",
+      "summary": "Resolve a workspace's runtime voice config.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_support_conversations",
+      "title": "List Support Conversations",
+      "summary": "Deprecated compatibility name; use list_tenant_conversations.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_support_conversation_transcript",
+      "title": "Get Support Conversation Transcript",
+      "summary": "Deprecated compatibility name; use get_tenant_conversation_transcript.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "delete_tenant_conversation",
+      "title": "Delete Workspace Conversation",
+      "summary": "Delete Workspace Conversation.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "mark_tenant_conversation_test",
+      "title": "Mark Workspace Conversation Test",
+      "summary": "Mark Workspace Conversation Test.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "cancel_tenant_conversation_run",
+      "title": "Cancel Workspace Conversation Run",
+      "summary": "STOP one workspace-owned Busymate AI conversation whose turn is still executing.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_support_interventions",
+      "title": "List Support Interventions",
+      "summary": "Deprecated compatibility name; use list_tenant_interventions.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_support_intervention",
+      "title": "Get Support Intervention",
+      "summary": "Deprecated compatibility name; use get_tenant_intervention.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "claim_support_intervention",
+      "title": "Claim Support Intervention",
+      "summary": "Deprecated compatibility name; use claim_tenant_intervention.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "reply_support_intervention",
+      "title": "Reply Support Intervention",
+      "summary": "Deprecated compatibility name; use reply_tenant_intervention.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "resolve_support_intervention",
+      "title": "Resolve Support Intervention",
+      "summary": "Deprecated compatibility name; use resolve_tenant_intervention.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "translate_conversation",
+      "title": "Translate Conversation",
+      "summary": "Translate Conversation.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_conversation_translation",
+      "title": "Set Conversation Translation",
+      "summary": "Set Conversation Translation.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_tenant_translation_usage",
+      "title": "Get Workspace Translation Usage",
+      "summary": "Reads how many support turns a workspace translated today, the daily ceiling those count against, and the per-provider/model token totals behind them.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_support_insights",
+      "title": "List Support Insights",
+      "summary": "Deprecated compatibility name; use list_tenant_insights.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "run_support_insight_audit",
+      "title": "Run Support Insight Audit",
+      "summary": "Deprecated compatibility name; use run_tenant_insight_audit.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_insights_metrics",
+      "title": "List Insights Metrics",
+      "summary": "List Insights Metrics.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "summarize_tenant_insights",
+      "title": "Summarize Workspace Insights",
+      "summary": "Summarize Workspace Insights.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_events",
+      "title": "List Events",
+      "summary": "List Events.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_session_timeline",
+      "title": "Get Session Timeline",
+      "summary": "Get Session Timeline.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_tenant_customers",
+      "title": "List Workspace Customers",
+      "summary": "List Workspace Customers.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_tenant_customer",
+      "title": "Get Workspace Customer",
+      "summary": "Get Workspace Customer.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_tenant_customer_sessions",
+      "title": "List Workspace Customer Sessions",
+      "summary": "List Workspace Customer Sessions.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_tenant_identity_health",
+      "title": "Get Workspace Identity Health",
+      "summary": "Is this workspace still handing its signed-in customers over to the assistant.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "export_tenant_customer",
+      "title": "Export Workspace Customer",
+      "summary": "Export everything one workspace holds about one customer as JSON.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "forget_tenant_customer",
+      "title": "Forget Workspace Customer",
+      "summary": "Forget Workspace Customer.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_workflow_runs",
+      "title": "List Workflow Runs",
+      "summary": "List YOUR OWN Busymate AI workflow runs.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_workflow_run",
+      "title": "Get Workflow Run",
+      "summary": "Watch ONE Busymate AI workflow run by its session id.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "start_workflow",
+      "title": "Start Workflow",
+      "summary": "Start a NEW named, phased Busymate AI workflow run from a goal.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "transition_tenant_intervention",
+      "title": "Transition Workspace Intervention",
+      "summary": "Transition Workspace Intervention.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_tenant_intervention_disposition",
+      "title": "Set Workspace Intervention Disposition",
+      "summary": "Set a workspace intervention's disposition: resolve, snooze (with an optional ISO snooze_until wake instant; omit it for a next-reply snooze), or reopen.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "assign_tenant_intervention",
+      "title": "Assign Workspace Intervention",
+      "summary": "Assign a workspace intervention to an operator (assignee_user_id; null to unassign) and/or a helpdesk team (team_id; null to clear).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_tenant_intervention_priority",
+      "title": "Set Workspace Intervention Priority",
+      "summary": "Set a workspace intervention's priority (low, normal, high, urgent).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_tenant_intervention_label",
+      "title": "Set Workspace Intervention Label",
+      "summary": "Apply (applied:true) or remove (applied:false) one helpdesk label on a workspace intervention.",
+      "signIn": "required",
       "annotations": {
         "readOnlyHint": false,
         "destructiveHint": true
@@ -76,31 +1254,1899 @@
     },
     {
       "name": "add_tenant_intervention_note",
-      "summary": "Adds an internal note to a handoff request; customers never see it.",
+      "title": "Add Workspace Intervention Note",
+      "summary": "Add Workspace Intervention Note.",
+      "signIn": "required",
       "annotations": {
         "readOnlyHint": false,
         "destructiveHint": true
       }
     },
     {
-      "name": "list_tenant_knowledge_sources",
-      "summary": "Lists the knowledge sources the assistant answers from.",
+      "name": "apply_tenant_intervention_macro",
+      "title": "Apply Workspace Intervention Macro",
+      "summary": "Run a helpdesk macro (its ordered action list) against a workspace intervention.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "intervene_tenant_conversation",
+      "title": "Intervene Workspace Conversation",
+      "summary": "Intervene Workspace Conversation.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_tenant_conversation_context",
+      "title": "Get Workspace Conversation Context",
+      "summary": "Read the operator contact panel's context for a workspace intervention: the contact's identity claims, custom attributes, channel, and prior conversations.",
+      "signIn": "required",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false
       }
     },
     {
-      "name": "search_knowledge",
-      "summary": "Searches the workspace knowledge and returns matching passages with their source.",
+      "name": "set_tenant_contact_attribute",
+      "title": "Set Workspace Contact Attribute",
+      "summary": "Set (value given) or delete (value omitted) one custom key/value attribute on the contact behind a workspace intervention.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "merge_tenant_contact",
+      "title": "Merge Workspace Contact",
+      "summary": "Merge a duplicate contact (source_session_id) INTO the contact behind a workspace intervention; the source's conversations move over.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "redact_tenant_contact",
+      "title": "Redact Workspace Contact",
+      "summary": "Redact the contact behind a workspace intervention.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "start_tenant_contact_conversation",
+      "title": "Start Workspace Contact Conversation",
+      "summary": "Start Workspace Contact Conversation.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_tenant_contact_candidates",
+      "title": "List Workspace Contact Candidates",
+      "summary": "List a workspace's recent visitor sessions (identity claims, channel, last seen) as merge candidates.",
+      "signIn": "required",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false
       }
     },
     {
-      "name": "add_tenant_knowledge_source",
-      "summary": "Adds a public web page as a knowledge source; Busymate fetches and indexes it.",
+      "name": "list_tenant_visitor_sessions",
+      "title": "List Workspace Visitor Sessions",
+      "summary": "List Workspace Visitor Sessions.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_index_pages",
+      "title": "List Index Pages",
+      "summary": "List the pages of a workspace's knowledge index.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_index_status",
+      "title": "Get Index Status",
+      "summary": "Get Index Status.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "recrawl_index",
+      "title": "Recrawl Index",
+      "summary": "Re-read a workspace's knowledge source now, or force ONE page due now with its stored validators cleared so the fetch cannot come back as unchanged.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_index_config",
+      "title": "Set Index Config",
+      "summary": "Set Index Config.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "exclude_index_paths",
+      "title": "Exclude Index Paths",
+      "summary": "Keep pages out of a workspace's knowledge index by literal url fragment (up to 50 fragments), or lift the exclusion with exclude:false.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "pause_index",
+      "title": "Pause Index",
+      "summary": "Pause or resume crawling of a workspace's knowledge source.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "check_tenant_default_subdomain",
+      "title": "Check Workspace Default Subdomain",
+      "summary": "Check Workspace Default Subdomain.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_tenant_default_subdomain",
+      "title": "Set Workspace Default Subdomain",
+      "summary": "Change a workspace's default subdomain to <name>.busymate.ai.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "create_tenant_attachment_upload",
+      "title": "Create Workspace Attachment Upload",
+      "summary": "Mint a short-lived upload grant for an operator reply attachment (name + byte size) on a workspace intervention.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "originate_tenant_voice_call",
+      "title": "Originate Workspace Voice Call",
+      "summary": "Originate Workspace Voice Call.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "escalate_tenant_inbound_call",
+      "title": "Escalate Workspace Inbound Call",
+      "summary": "Escalate Workspace Inbound Call.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "draft_tenant_support_reply",
+      "title": "Draft Workspace Support Reply",
+      "summary": "Draft Workspace Support Reply.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_tenant_inbox_counts",
+      "title": "Get Workspace Inbox Counts",
+      "summary": "The Inbox's badge counts, exactly as the Console shows them.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_agent_takeover",
+      "title": "Get Agent Takeover",
+      "summary": "Read the operator snapshot of a generic (non-support) agent handoff on a workspace agent session (wrun_…): its state, assignee, and undelivered messages.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "act_on_agent_takeover",
+      "title": "Act On Agent Takeover",
+      "summary": "Act On Agent Takeover.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_tenant_contact_threads",
+      "title": "List Workspace Contact Threads",
+      "summary": "List one identified contact's AI threads (scope = workspace + identity_provider_id + external_subject, the same three-dimension scope the visitor index uses).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "rename_tenant_contact_thread",
+      "title": "Rename Workspace Contact Thread",
+      "summary": "Rename one of an identified contact's AI threads (thread_id = the wrun_… session; title ≤ 120 chars).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_tenant_voice_handoff",
+      "title": "Get Workspace Voice Handoff",
+      "summary": "Get Workspace Voice Handoff.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_tenant_voice_handoff",
+      "title": "Set Workspace Voice Handoff",
+      "summary": "Change a workspace's voice handoff settings.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_tenant_operator_voice_profile",
+      "title": "Set Workspace Operator Voice Profile",
+      "summary": "Set an operator's voice profile in a workspace: mobile number in E.164 (e.g.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_tenant_presence_state",
+      "title": "Get Workspace Presence State",
+      "summary": "Read a workspace's helpdesk presence: every operator's declared status + last heartbeat + availability, the per-workspace presence privacy setting, and.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_tenant_presence_settings",
+      "title": "Set Workspace Presence Settings",
+      "summary": "Set a workspace's presence privacy: share_operator_last_seen.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_tenant_routing_state",
+      "title": "Get Workspace Routing State",
+      "summary": "Read a workspace's helpdesk routing state: the auto-assign policy, the live operator presence roster, and per-team auto-assign flags.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_tenant_routing_policy",
+      "title": "Set Workspace Routing Policy",
+      "summary": "Set Workspace Routing Policy.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_tenant_team_auto_assign",
+      "title": "Set Workspace Team Auto Assign",
+      "summary": "Allow or forbid auto-assignment into one helpdesk team.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_tenant_response_policy",
+      "title": "Get Workspace Response Policy",
+      "summary": "Get Workspace Response Policy.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_tenant_response_policy",
+      "title": "Set Workspace Response Policy",
+      "summary": "Change a workspace's response policy.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_tenant_conversation_assistant_hold",
+      "title": "Set Workspace Conversation Assistant Hold",
+      "summary": "Set Workspace Conversation Assistant Hold.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "assign_next_tenant_operator",
+      "title": "Assign Next Workspace Operator",
+      "summary": "Assign Next Workspace Operator.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "upsert_tenant_helpdesk_team",
+      "title": "Upsert Workspace Helpdesk Team",
+      "summary": "Create (omit team_id) or update a helpdesk team: key, name, description, color, sort_order.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "delete_tenant_helpdesk_team",
+      "title": "Delete Workspace Helpdesk Team",
+      "summary": "Delete a helpdesk team.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_tenant_helpdesk_team_member",
+      "title": "Set Workspace Helpdesk Team Member",
+      "summary": "Add (member:true) or remove (member:false) an operator on a helpdesk team.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "upsert_tenant_automation_rule",
+      "title": "Upsert Workspace Automation Rule",
+      "summary": "Create (omit rule_id) or update an event → conditions → actions automation rule (event_name, conditions {clauses}, actions [], delay_seconds, enabled).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_tenant_automation_rule_enabled",
+      "title": "Set Workspace Automation Rule Enabled",
+      "summary": "Enable or disable an automation rule.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "delete_tenant_automation_rule",
+      "title": "Delete Workspace Automation Rule",
+      "summary": "Delete an automation rule.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "upsert_tenant_saved_view",
+      "title": "Upsert Workspace Saved View",
+      "summary": "Create (omit view_id) or update a saved inbox filter preset (name + query {clauses}; filter_type conversation).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "delete_tenant_saved_view",
+      "title": "Delete Workspace Saved View",
+      "summary": "Delete a saved inbox filter preset.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "upsert_tenant_automation_macro",
+      "title": "Upsert Workspace Automation Macro",
+      "summary": "Create (omit macro_id) or update an automation macro (name, ordered actions, visibility).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "delete_tenant_automation_macro",
+      "title": "Delete Workspace Automation Macro",
+      "summary": "Delete an automation macro.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "upsert_tenant_helpdesk_label",
+      "title": "Upsert Workspace Helpdesk Label",
+      "summary": "Create (omit label_id) or update a helpdesk label: key, name, color, description, sort_order.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "delete_tenant_helpdesk_label",
+      "title": "Delete Workspace Helpdesk Label",
+      "summary": "Delete a helpdesk label (it is removed from every conversation).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "upsert_tenant_helpdesk_folder",
+      "title": "Upsert Workspace Helpdesk Folder",
+      "summary": "Create (omit folder_id) or update an inbox folder (name + filters object + sort_order).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "delete_tenant_helpdesk_folder",
+      "title": "Delete Workspace Helpdesk Folder",
+      "summary": "Delete an inbox folder.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "upsert_tenant_helpdesk_macro",
+      "title": "Upsert Workspace Helpdesk Macro",
+      "summary": "Create (omit macro_id) or update a helpdesk macro (name + ordered actions applied to a conversation, description, sort_order).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "delete_tenant_helpdesk_macro",
+      "title": "Delete Workspace Helpdesk Macro",
+      "summary": "Delete a helpdesk macro.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "upsert_tenant_canned_response",
+      "title": "Upsert Workspace Canned Response",
+      "summary": "Create (omit canned_id) or update a canned response: shortcut, title, body, optional locale.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "delete_tenant_canned_response",
+      "title": "Delete Workspace Canned Response",
+      "summary": "Delete a canned response.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_tenant_accountability_overview",
+      "title": "Get Workspace Accountability Overview",
+      "summary": "Read a workspace's accountability overview over the last N days (default 30): SLA attainment per policy, business hours, and CSAT settings + rollups.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "upsert_tenant_sla_policy",
+      "title": "Upsert Workspace Sla Policy",
+      "summary": "Upsert Workspace Sla Policy.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "delete_tenant_sla_policy",
+      "title": "Delete Workspace Sla Policy",
+      "summary": "Delete an SLA policy.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_tenant_business_hours",
+      "title": "Set Workspace Business Hours",
+      "summary": "Set a workspace's business hours: enabled, IANA timezone, off-hours message, and the day schedule array.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_tenant_csat_settings",
+      "title": "Set Workspace Csat Settings",
+      "summary": "Enable/disable the post-resolution CSAT survey and choose which label keys trigger it.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "clear_tenant_connector_credential",
+      "title": "Clear Workspace Connector Credential",
+      "summary": "Drop the stored bearer/OAuth credential of a workspace MCP connector (the connector stays; its auth falls back to none until re-authored).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_tenant_test_account",
+      "title": "Set Workspace Test Account",
+      "summary": "Set Workspace Test Account.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_tenant_test_account",
+      "title": "Get Workspace Test Account",
+      "summary": "Get Workspace Test Account.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "revoke_tenant_test_account",
+      "title": "Revoke Workspace Test Account",
+      "summary": "Revoke one of a workspace's test accounts: its stored credential stops working, any live share link is burned, and the row stays as history.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "share_tenant_test_account",
+      "title": "Share Workspace Test Account",
+      "summary": "Share Workspace Test Account.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "verify_tenant_private_tools",
+      "title": "Verify Workspace Private Tools",
+      "summary": "Verify Workspace Private Tools.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_tenant_test_account_runs",
+      "title": "List Workspace Test Account Runs",
+      "summary": "List Workspace Test Account Runs.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "purge_tenant_test_traffic",
+      "title": "Purge Workspace Test Traffic",
+      "summary": "Purge Workspace Test Traffic.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_tenant_diagnostics_summary",
+      "title": "Get Workspace Diagnostics Summary",
+      "summary": "Get Workspace Diagnostics Summary.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "export_tenant_diagnostics_artifact",
+      "title": "Export Workspace Diagnostics Artifact",
+      "summary": "Export Workspace Diagnostics Artifact.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "connect_channel",
+      "title": "Connect Channel",
+      "summary": "Connect Channel.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_channel_scope",
+      "title": "Set Channel Scope",
+      "summary": "Set Channel Scope.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "disable_channel",
+      "title": "Disable Channel",
+      "summary": "Turn OFF one of a workspace's connected channels: the registration stops serving immediately and returns to draft.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_channel_status",
+      "title": "Get Channel Status",
+      "summary": "Read a workspace's channel connections across ALL eight kinds (slack, discord, teams, telegram, whatsapp, messenger, instagram, sms).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_telegram_business_status",
+      "title": "Get Telegram Business Status",
+      "summary": "Read a workspace's Telegram Business setup.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_telegram_business_ai",
+      "title": "Set Telegram Business Ai",
+      "summary": "Change how your mate answers on a workspace's connected Telegram Business account(s).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "create_telegram_business_link_code",
+      "title": "Create Telegram Business Link Code",
+      "summary": "Create Telegram Business Link Code.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "connect_email_channel",
+      "title": "Connect Email Channel",
+      "summary": "Connect Email Channel.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_email_channel_status",
+      "title": "Get Email Channel Status",
+      "summary": "Get Email Channel Status.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "connect_platform_mailbox",
+      "title": "Connect Platform Mailbox",
+      "summary": "Connect Platform Mailbox.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "disconnect_email_channel",
+      "title": "Disconnect Email Channel",
+      "summary": "Disconnect Email Channel.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_email_channel_settings",
+      "title": "Set Email Channel Settings",
+      "summary": "Change HOW the assistant uses one connected mailbox.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "send_email_reply",
+      "title": "Send Email Reply",
+      "summary": "Send Email Reply.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_email_channel_events",
+      "title": "List Email Channel Events",
+      "summary": "List the inbound webhook events recorded for a workspace's connected mailboxes.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_email_instance",
+      "title": "Get Email Instance",
+      "summary": "Get Email Instance.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_email_instance",
+      "title": "Set Email Instance",
+      "summary": "Set Email Instance.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "test_email_instance",
+      "title": "Test Email Instance",
+      "summary": "Test Email Instance.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "rotate_email_instance_token",
+      "title": "Rotate Email Instance Token",
+      "summary": "Rotate Email Instance Token.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "rotate_email_ingress_secret",
+      "title": "Rotate Email Ingress Secret",
+      "summary": "Rotate Email Ingress Secret.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_email_instance_health",
+      "title": "Get Email Instance Health",
+      "summary": "Get Email Instance Health.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "detach_email_instance",
+      "title": "Detach Email Instance",
+      "summary": "Detach Email Instance.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_email_instance_mailboxes",
+      "title": "List Email Instance Mailboxes",
+      "summary": "List Email Instance Mailboxes.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_adoptable_email_accounts",
+      "title": "List Adoptable Email Accounts",
+      "summary": "List Adoptable Email Accounts.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "adopt_email_account",
+      "title": "Adopt Email Account",
+      "summary": "Adopt Email Account.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_email_mailbox_settings",
+      "title": "Set Email Mailbox Settings",
+      "summary": "Set Email Mailbox Settings.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "verify_email_channel",
+      "title": "Verify Email Channel",
+      "summary": "Verify Email Channel.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "pause_email_channel",
+      "title": "Pause Email Channel",
+      "summary": "EmailEngine: Pause or resume one mailbox.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "reconnect_email_channel",
+      "title": "Reconnect Email Channel",
+      "summary": "EmailEngine: Ask the mail server to reconnect one mailbox's IMAP session, then re-verify it.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_email_folders",
+      "title": "List Email Folders",
+      "summary": "List Email Folders.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_email_folder_settings",
+      "title": "Set Email Folder Settings",
+      "summary": "Set Email Folder Settings.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_email_import_status",
+      "title": "Get Email Import Status",
+      "summary": "Get Email Import Status.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "import_email_history",
+      "title": "Import Email History",
+      "summary": "Import Email History.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_email_engine_accounts",
+      "title": "List Email Engine Accounts",
+      "summary": "List Email Engine Accounts.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "bind_email_mailbox",
+      "title": "Bind Email Mailbox",
+      "summary": "Bind Email Mailbox.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "unbind_email_mailbox",
+      "title": "Unbind Email Mailbox",
+      "summary": "EmailEngine: Take ONE mailbox off this workspace (channel_id from list_email_instance_mailboxes).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_email_connector_enablement",
+      "title": "Get Email Connector Enablement",
+      "summary": "EmailEngine: Read whether the EmailEngine connector is switched on for a workspace, and what its BYO options are.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_email_instance_mode",
+      "title": "Set Email Instance Mode",
+      "summary": "Set Email Instance Mode.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_email_instance_migration_plan",
+      "title": "Get Email Instance Migration Plan",
+      "summary": "EmailEngine: Read the CUT-OVER PLAN for moving a workspace's mail onto its own EmailEngine, derived from what is already true and performing nothing.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_email_inbound_rules",
+      "title": "Get Email Inbound Rules",
+      "summary": "Read who may write in to a workspace's mailboxes.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_email_inbound_rules",
+      "title": "Set Email Inbound Rules",
+      "summary": "Change who may write in.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_email_routing",
+      "title": "Get Email Routing",
+      "summary": "Get Email Routing.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_email_routing",
+      "title": "Set Email Routing",
+      "summary": "Change where a workspace's mail goes.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_email_ai_policy",
+      "title": "Get Email Ai Policy",
+      "summary": "Get Email Ai Policy.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_email_ai_policy",
+      "title": "Set Email Ai Policy",
+      "summary": "Change whether a workspace's mate sends email.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "test_email_rules",
+      "title": "Test Email Rules",
+      "summary": "DRY-RUN a message against a workspace's live rules and report which rule fires at each stage.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_email_outbound",
+      "title": "Get Email Outbound",
+      "summary": "Get Email Outbound.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_email_outbound",
+      "title": "Set Email Outbound",
+      "summary": "Change a workspace's outbound settings.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_email_identities",
+      "title": "List Email Identities",
+      "summary": "List Email Identities.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "verify_email_identity",
+      "title": "Verify Email Identity",
+      "summary": "Verify Email Identity.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_email_suppressions",
+      "title": "List Email Suppressions",
+      "summary": "List Email Suppressions.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "remove_email_suppression",
+      "title": "Remove Email Suppression",
+      "summary": "Take ONE address off a workspace's suppression list so it can be written to again.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_email_threading",
+      "title": "Get Email Threading",
+      "summary": "Read how a workspace's mail finds its conversation: thread_key (references | provider | both.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_email_threading",
+      "title": "Set Email Threading",
+      "summary": "Change a workspace's threading settings.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_email_notifications",
+      "title": "Get Email Notifications",
+      "summary": "Get Email Notifications.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_email_notifications",
+      "title": "Set Email Notifications",
+      "summary": "Change a workspace's mail notification settings.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_email_rules_history",
+      "title": "Get Email Rules History",
+      "summary": "Read the earlier versions of one of a workspace's mail rules documents.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "restore_email_rules",
+      "title": "Restore Email Rules",
+      "summary": "Put ONE earlier version of a workspace's mail rules document back, whole, by its history_id from get_email_rules_history.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_email_effective_rules",
+      "title": "Get Email Effective Rules",
+      "summary": "Get Email Effective Rules.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_email_data_policy",
+      "title": "Get Email Data Policy",
+      "summary": "Get Email Data Policy.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_email_data_policy",
+      "title": "Set Email Data Policy",
+      "summary": "Change ONE kind of data setting per call; it validates and applies, and the answer is the whole policy re-read.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "export_email_data",
+      "title": "Export Email Data",
+      "summary": "Export Email Data.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "purge_email_traffic",
+      "title": "Purge Email Traffic",
+      "summary": "Purge Email Traffic.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "replay_email_webhook_event",
+      "title": "Replay Email Webhook Event",
+      "summary": "EmailEngine: Re-drive ONE provider webhook event (event_id, from list_email_channel_events) through the real ingress.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_email_deliveries",
+      "title": "List Email Deliveries",
+      "summary": "List Email Deliveries.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_email_outbox",
+      "title": "Get Email Outbox",
+      "summary": "Get Email Outbox.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "cancel_email_outbox_message",
+      "title": "Cancel Email Outbox Message",
+      "summary": "Cancel Email Outbox Message.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "run_email_diagnostics",
+      "title": "Run Email Diagnostics",
+      "summary": "Run Email Diagnostics.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_email_threads",
+      "title": "List Email Threads",
+      "summary": "List Email Threads.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_email_thread",
+      "title": "Get Email Thread",
+      "summary": "Get Email Thread.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "search_email",
+      "title": "Search Email",
+      "summary": "Search Email.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_email_attachment",
+      "title": "Get Email Attachment",
+      "summary": "Resolve ONE attachment of a mirrored message to a short-lived Console download URL plus its metadata (file name, content type, size, inline or not).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "summarize_email_thread",
+      "title": "Summarize Email Thread",
+      "summary": "Summarize Email Thread.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "suggest_email_reply",
+      "title": "Suggest Email Reply",
+      "summary": "Suggest Email Reply.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "translate_email",
+      "title": "Translate Email",
+      "summary": "Translate Email.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "send_email",
+      "title": "Send Email",
+      "summary": "SEND a NEW mail from a workspace's connected mailbox: to (addresses), optional cc, subject, text and optional html; the mailbox signature is appended once.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "reply_email",
+      "title": "Reply Email",
+      "summary": "Reply Email.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "forward_email",
+      "title": "Forward Email",
+      "summary": "Forward Email.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "send_calendar_invite",
+      "title": "Send Calendar Invite",
+      "summary": "Send Calendar Invite.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "mark_email_read",
+      "title": "Mark Email Read",
+      "summary": "MARK one mirrored message read (read: true, the default) or unread (read: false) in the connected mailbox itself.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "move_email",
+      "title": "Move Email",
+      "summary": "MOVE one mirrored message in the connected mailbox to to: 'archive' (the mailbox's archive folder), 'trash', or an explicit folder path.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "flag_email",
+      "title": "Flag Email",
+      "summary": "FLAG (flagged: true) or unflag (flagged: false) one mirrored message in the connected mailbox.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "delete_email",
+      "title": "Delete Email",
+      "summary": "Delete Email.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "connect_crm",
+      "title": "Connect Crm",
+      "summary": "Connect Crm.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "sync_crm",
+      "title": "Sync Crm",
+      "summary": "Act on a workspace's existing CRM connection.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_crm_status",
+      "title": "Get Crm Status",
+      "summary": "Read a workspace's CRM connections across BOTH kinds (hubspot, zendesk) whether connected or not.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_whatsapp_templates",
+      "title": "List Whatsapp Templates",
+      "summary": "List Whatsapp Templates.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "create_whatsapp_template",
+      "title": "Create Whatsapp Template",
+      "summary": "Create Whatsapp Template.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "delete_whatsapp_template",
+      "title": "Delete Whatsapp Template",
+      "summary": "Delete a WhatsApp message template from the workspace's WhatsApp Business Account on Meta.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "send_whatsapp_template",
+      "title": "Send Whatsapp Template",
+      "summary": "Send Whatsapp Template.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_connector_actor_verifier",
+      "title": "Set Connector Actor Verifier",
+      "summary": "Set Connector Actor Verifier.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "clear_connector_actor_verifier",
+      "title": "Clear Connector Actor Verifier",
+      "summary": "Clear Connector Actor Verifier.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_connector_actor_verifier_status",
+      "title": "Get Connector Actor Verifier Status",
+      "summary": "Read whether a workspace connector has a SELF-SET actor verifier.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_tenant_web_access",
+      "title": "Get Workspace Web Access",
+      "summary": "Get Workspace Web Access.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_tenant_web_access",
+      "title": "Set Workspace Web Access",
+      "summary": "Set Workspace Web Access.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "test_tenant_web_access",
+      "title": "Test Workspace Web Access",
+      "summary": "Test Workspace Web Access.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_billing_plans",
+      "title": "List Billing Plans",
+      "summary": "List Billing Plans.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_tenant_subscription",
+      "title": "Get Workspace Subscription",
+      "summary": "Get Workspace Subscription.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "create_tenant_checkout_session",
+      "title": "Create Workspace Checkout Session",
+      "summary": "Create Workspace Checkout Session.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "open_tenant_billing_portal",
+      "title": "Open Workspace Billing Portal",
+      "summary": "Open Workspace Billing Portal.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_tenant_page_tools_policy",
+      "title": "Get Workspace Page Tools Policy",
+      "summary": "Get Workspace Page Tools Policy.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_tenant_page_tools_policy",
+      "title": "Set Workspace Page Tools Policy",
+      "summary": "Set a workspace's HOST-PAGE tool policy.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_page_tool_calls",
+      "title": "List Page Tool Calls",
+      "summary": "List Page Tool Calls.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "set_webhook_endpoint",
+      "title": "Set Webhook Endpoint",
+      "summary": "Create or update ONE outbound webhook endpoint for a workspace.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "delete_webhook_endpoint",
+      "title": "Delete Webhook Endpoint",
+      "summary": "Delete a workspace's webhook endpoint and its signing secret; queued deliveries for it are removed.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "send_webhook_test_event",
+      "title": "Send Webhook Test Event",
+      "summary": "Queue a signed webhook.test delivery to one endpoint so the workspace can confirm their receiver verifies the signature.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_webhook_status",
+      "title": "Get Webhook Status",
+      "summary": "Get Webhook Status.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_webhook_deliveries",
+      "title": "List Webhook Deliveries",
+      "summary": "List a workspace's recent webhook deliveries (newest first): event, state, attempt count, next/last attempt, HTTP status and last error.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "retry_webhook_delivery",
+      "title": "Retry Webhook Delivery",
+      "summary": "Re-queue a failed or dead-lettered delivery for immediate re-attempt (attempt counter reset).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_webhook_inspect_receiver",
+      "title": "Get Webhook Inspect Receiver",
+      "summary": "Mint (or return the workspace's existing) inspect-receiver capture URL.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_webhook_inspect_captures",
+      "title": "List Webhook Inspect Captures",
+      "summary": "List Webhook Inspect Captures.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "create_api_key",
+      "title": "Create API Key",
+      "summary": "Create a workspace-scoped API key that authenticates this workspace's busymate.ai/mcp endpoint and its REST facade.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_api_keys",
+      "title": "List API Keys",
+      "summary": "List a workspace's API keys: label, prefix, scopes, and created/last-used/revoked timestamps.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "rotate_api_key",
+      "title": "Rotate API Key",
+      "summary": "Revoke an API key and mint a replacement with the same label and scopes; the new key is returned ONCE.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "title": "Revoke API Key",
+      "summary": "Revoke a workspace API key immediately; calls carrying it stop authenticating.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_merge_candidates",
+      "title": "List Merge Candidates",
+      "summary": "List the other conversations of this workspace that provably belong to the SAME person as the given conversation.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "merge_conversations",
+      "title": "Merge Conversations",
+      "summary": "Merge Conversations.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "claim_onboarding",
+      "title": "Claim Onboarding",
+      "summary": "Claim Onboarding.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "go_live_onboarding",
+      "title": "Go Live Onboarding",
+      "summary": "Go Live Onboarding.",
+      "signIn": "required",
       "annotations": {
         "readOnlyHint": false,
         "destructiveHint": true
@@ -108,10 +3154,442 @@
     },
     {
       "name": "get_install_snippet",
-      "summary": "Returns the script snippet that installs the assistant on the business's website.",
+      "title": "Get Install Snippet",
+      "summary": "Get Install Snippet.",
+      "signIn": "required",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_connector_overview",
+      "title": "Get Connector Overview",
+      "summary": "Read one connector of a workspace at a glance.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "request_human",
+      "title": "Request Human",
+      "summary": "Open the inline human-support form.",
+      "signIn": "optional",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "submit_human_request",
+      "title": "Submit Human Request",
+      "summary": "App-only explicit human-support submission with the host-private request capability.",
+      "signIn": "optional",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_human_request",
+      "title": "Get Human Request",
+      "summary": "App-only retrieval of this capability-owned human-support request and operator replies.",
+      "signIn": "optional",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "acknowledge_human_replies",
+      "title": "Acknowledge Human Replies",
+      "summary": "App-only acknowledgement of operator reply bodies rendered by this capability-owned human-support app.",
+      "signIn": "optional",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_platform_pricing",
+      "title": "Get Platform Pricing",
+      "summary": "Get Platform Pricing.",
+      "signIn": "optional",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_platform_overview",
+      "title": "Get Platform Overview",
+      "summary": "Get Platform Overview.",
+      "signIn": "optional",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "search_platform_docs",
+      "title": "Search Platform Docs",
+      "summary": "Search Platform Docs.",
+      "signIn": "optional",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_platform_status",
+      "title": "Get Platform Status",
+      "summary": "Get Platform Status.",
+      "signIn": "optional",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_contact_channels",
+      "title": "Get Contact Channels",
+      "summary": "Get Contact Channels.",
+      "signIn": "optional",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_platform_contact",
+      "title": "Get Platform Contact",
+      "summary": "Get Platform Contact.",
+      "signIn": "optional",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_mate_capabilities",
+      "title": "Get Mate Capabilities",
+      "summary": "Get Mate Capabilities.",
+      "signIn": "optional",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "try_website",
+      "title": "Try Website",
+      "summary": "Try Website.",
+      "signIn": "optional",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_try_progress",
+      "title": "Get Try Progress",
+      "summary": "Get Try Progress.",
+      "signIn": "optional",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_whitelabel_overview",
+      "title": "Get Whitelabel Overview",
+      "summary": "Get Whitelabel Overview.",
+      "signIn": "optional",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "upsert_tenant_connector",
+      "title": "Upsert Workspace Connector",
+      "summary": "Author or update a workspace MCP connector: unauthenticated or bearer server access, signed customer actor delegation, or per-customer OAuth.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "delete_tenant_connector",
+      "title": "Delete Workspace Connector",
+      "summary": "Delete Workspace Connector.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_tenant_resources",
+      "title": "List Workspace Resources",
+      "summary": "List the exact workspace-scoped knowledge sources, actor-visible skills, and published plugins selectable for a Busymate AI runtime.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_tenant_knowledge_sources",
+      "title": "List Workspace Knowledge Sources",
+      "summary": "List workspace-owned website knowledge sources.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "add_tenant_knowledge_source",
+      "title": "Add Workspace Knowledge Source",
+      "summary": "Add Workspace Knowledge Source.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "reindex_tenant_knowledge_source",
+      "title": "Reindex Workspace Knowledge Source",
+      "summary": "Queue a fresh generation for one enabled workspace website source.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "set_tenant_knowledge_source_enabled",
+      "title": "Set Workspace Knowledge Source Enabled",
+      "summary": "Enable or disable one workspace website source.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "delete_tenant_knowledge_source",
+      "title": "Delete Workspace Knowledge Source",
+      "summary": "Delete one workspace website source and its generated chunk memories.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "search_tenant_knowledge",
+      "title": "Search Workspace Knowledge",
+      "summary": "Search approved chunks from enabled, ready website sources in one exact workspace.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "connect_tenant_knowledge_source",
+      "title": "Connect Workspace Knowledge Source",
+      "summary": "Connect (or reconnect / rotate the token of) a workspace knowledge source of ANY kind and queue its first bounded read.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "sync_tenant_knowledge_source",
+      "title": "Sync Workspace Knowledge Source",
+      "summary": "Queue a fresh read of one enabled workspace knowledge source of any kind.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_tenant_knowledge_source_status",
+      "title": "Get Workspace Knowledge Source Status",
+      "summary": "Get Workspace Knowledge Source Status.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "connect_commerce",
+      "title": "Connect Commerce",
+      "summary": "Connect Commerce.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "sync_commerce",
+      "title": "Sync Commerce",
+      "summary": "Queue a fresh catalogue read of a workspace's connected e-commerce store.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "get_commerce_status",
+      "title": "Get Commerce Status",
+      "summary": "Get Commerce Status.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_tenant_conversations",
+      "title": "List Workspace Conversations",
+      "summary": "List a workspace's recent and currently-live Busymate AI conversations from the Console's authoritative activity index.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_tenant_conversation_transcript",
+      "title": "Get Workspace Conversation Transcript",
+      "summary": "Replay one workspace-owned Busymate AI conversation from the assistant's durable event stream.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "list_tenant_interventions",
+      "title": "List Workspace Interventions",
+      "summary": "List Workspace Interventions.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "get_tenant_intervention",
+      "title": "Get Workspace Intervention",
+      "summary": "Read one workspace-owned human intervention with its operator and visitor messages plus role-transition events.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "claim_tenant_intervention",
+      "title": "Claim Workspace Intervention",
+      "summary": "Claim one workspace-owned human-intervention request as the authenticated operator.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "reply_tenant_intervention",
+      "title": "Reply Workspace Intervention",
+      "summary": "Send an operator message into an active workspace-owned intervention.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "resolve_tenant_intervention",
+      "title": "Resolve Workspace Intervention",
+      "summary": "Resolve a workspace-owned intervention and return its conversation to AI handling.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_tenant_insights",
+      "title": "List Workspace Insights",
+      "summary": "List a workspace's conversation and product-intelligence audit runs with evidence-linked clusters.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "run_tenant_insight_audit",
+      "title": "Run Workspace Insight Audit",
+      "summary": "Queue a workspace's authoritative conversation-intelligence audit using its published runtime policy.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_my_telegram_bro_links",
+      "title": "List My Telegram Bro Links",
+      "summary": "List YOUR OWN linked Telegram support-bot accounts.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "unlink_my_telegram_bro_link",
+      "title": "Unlink My Telegram Bro Link",
+      "summary": "Revoke ONE of your own linked Telegram support-bot accounts by its id (from list_my_telegram_bro_links).",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
+      }
+    },
+    {
+      "name": "list_my_channel_account_links",
+      "title": "List My Channel Account Links",
+      "summary": "List your own platform messaging account connections.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false
+      }
+    },
+    {
+      "name": "revoke_my_channel_account_link",
+      "title": "Revoke My Channel Account Link",
+      "summary": "Disconnect one of your own messaging account connections by its binding_id.",
+      "signIn": "required",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true
       }
     }
   ]
