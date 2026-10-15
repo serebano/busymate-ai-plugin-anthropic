@@ -2,7 +2,7 @@
   "mcpServers": {
     "busymate-ai": {
       "type": "http",
-      "url": "https://busymate.ai/mcp/claude"
+      "url": "https://busymate.ai/mcp"
     }
   }
 }

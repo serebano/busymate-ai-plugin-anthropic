@@ -8,7 +8,7 @@ Draft copy for the **MCP connector** submission at [claude.ai/directory/manage](
 |---|---|
 | Name | Busymate AI |
 | Slug | `busymate-ai` (permanent; confirm before publishing) |
-| Server URL | `https://busymate.ai/mcp/claude` |
+| Server URL | `https://busymate.ai/mcp` |
 | Transport | Streamable HTTP |
 | Auth | OAuth 2.1 with PKCE and dynamic client registration; lazy auth (tools are listed before sign-in, and calls need sign-in) |
 | Categories (1–5) | Customer support; Productivity; Business. Use the closest portal names. |
@@ -67,7 +67,7 @@ Paste into the portal's reviewer instructions. Credentials are in the Vault as `
 ```
 Busymate AI — reviewer access
 
-1. Connect the Busymate AI connector (claude.ai Settings > Connectors). If asked for a server URL, use https://busymate.ai/mcp/claude.
+1. Connect the Busymate AI connector (claude.ai Settings > Connectors). If asked for a server URL, use https://busymate.ai/mcp.
 2. When asked to sign in, you land on https://busymate.ai/login. Enter the reviewer email and password provided in this submission. It is email and password only: no MFA, no email code, no sign-up. Then approve the consent screen.
 3. The account owns the workspace "Demo Bakery", a fictional bakery that also sells baking equipment. All customers, addresses and orders in it are invented.
 4. Things to try:

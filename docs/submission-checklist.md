@@ -28,8 +28,8 @@ Two submissions from the same organization: first the **MCP connector** (by URL)
 
 - [ ] H Streamable HTTP at a public HTTPS URL, reachable from Anthropic's egress range `160.79.104.0/21`, with no WAF or CDN blocks on the MCP path or `/.well-known/*`.
 - [ ] H OAuth 2.0/2.1 with PKCE. The callback `https://claude.ai/api/mcp/auth_callback` is accepted. Discovery, registration and token respond within 10 seconds, and refresh within 30.
-- [ ] H One auth model, applied consistently. With lazy auth, `initialize` and `tools/list` work before sign-in and list the whole profile, and a protected `tools/call` returns HTTP 401 with `WWW-Authenticate`. Never return an `isError` result for missing auth, because Claude then shows no Connect button.
-- [ ] H Protected-resource metadata gives this profile's own `resource` URL, served at the path-suffixed and root well-known locations.
+- [ ] H One auth model, applied consistently. With lazy auth, `initialize` and `tools/list` work before sign-in and list every tool a workspace admin can use, and a protected `tools/call` returns HTTP 401 with `WWW-Authenticate`. Never return an `isError` result for missing auth, because Claude then shows no Connect button.
+- [ ] H Protected-resource metadata gives the server's `resource` URL (`https://busymate.ai/mcp`), served at the path-suffixed and root well-known locations.
 - [ ] H The listed tools are exactly what a signed-in user can call. Admin-only tools a reviewer cannot use fail review.
 - [ ] H Each tool has a `title` and the applicable hints. Reads are `readOnlyHint:true`. Anything that modifies data is `destructiveHint:true`, and destructive tools always prompt.
 - [ ] H Descriptions say exactly what the tool does. They contain no instructions aimed at the model, no references to other tools, no promotion of products or services, and no internal references.

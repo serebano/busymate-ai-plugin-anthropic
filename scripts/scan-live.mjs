@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Compares the live Claude profile with submission/tools.json. Fails closed: an
+// Compares the live server's tools/list with submission/tools.json. Fails closed: an
 // unreachable server or an empty list is a failure.
 //
 //   node scripts/scan-live.mjs                          # pre-auth view (lazy auth)
@@ -45,14 +45,14 @@ try {
   if (live.size === 0) problems.push('tools/list returned no tools');
   for (const want of spec.tools) {
     const got = live.get(want.name);
-    if (!got) { problems.push(`${want.name}: missing from the live profile${token ? '' : ' (pre-auth)'}`); continue; }
+    if (!got) { problems.push(`${want.name}: missing from the live server${token ? '' : ' (pre-auth)'}`); continue; }
     for (const [h, v] of Object.entries(want.annotations)) if (got.annotations?.[h] !== v) problems.push(`${want.name}: ${h} is ${got.annotations?.[h]} live, ${v} declared`);
     if (!(got.title || got.annotations?.title)) problems.push(`${want.name}: no title`);
     const d = got.description ?? '';
     if (!d.trim()) problems.push(`${want.name}: empty description`);
     if (/#\d{2,}|busymate-ai#|\beve\b|chatgpt|devtools/i.test(d) || /\b(NEVER|ALWAYS)\b/.test(d)) problems.push(`${want.name}: description has internal references or steering`);
   }
-  for (const name of live.keys()) if (!spec.tools.some((t) => t.name === name)) problems.push(`${name}: live but not declared (the profile must equal the declared tools)`);
+  for (const name of live.keys()) if (!spec.tools.some((t) => t.name === name)) problems.push(`${name}: live but not declared (the live list must equal the declared tools)`);
 } catch (err) {
   problems.push(`could not scan ${url}: ${err.message}`);
 }
