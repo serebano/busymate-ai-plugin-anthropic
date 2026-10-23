@@ -1,6 +1,6 @@
 {
   "_note": "Proposed v1 tool profile. The authoritative definitions live on the server (busymate-ai-src); CI compares this file with the live tools/list. Claude rule: every tool that modifies data is destructiveHint:true.",
-  "serverUrl": "https://busymate.ai/mcp/claude",
+  "serverUrl": "https://busymate.ai/mcp",
   "tools": [
     {
       "name": "list_tenants",

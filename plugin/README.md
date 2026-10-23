@@ -1,6 +1,8 @@
 # Busymate AI
 
-Busymate AI is the assistant that answers a business's customers on its website, using the business's own knowledge. This plugin connects Claude to your Busymate workspace so you can review customer conversations, act on the requests your assistant handed to a person, and search your workspace knowledge without leaving Claude.
+Work your Busymate AI inbox, handoff requests and knowledge from a Claude conversation.
+
+Use the official connector to check your inbox, answer handoff requests and search your knowledge without leaving the AI assistant you already work in. You sign in with your own account, the assistant reaches only what your role can reach, and a reply to a customer waits for your approval before it is sent.
 
 ## What it does
 
@@ -16,7 +18,7 @@ It includes two skills: **inbox-triage**, a routine for working through open han
 
 This plugin is published by EFIRITY PTE. LTD. (UEN 202402844G), 68 Circular Road #02-01, Singapore 049422.
 
-The plugin connects to one remote MCP server, `https://busymate.ai/mcp/claude`, which is the Busymate AI service. You sign in with your Busymate account through OAuth; the plugin stores no credentials. Tool results, which can include your customers' names, contact details and messages, are returned to Claude. The plugin runs no local code and sends data to no other destination. Adding a knowledge source makes Busymate fetch the public web page you name.
+The plugin connects to one remote MCP server, `https://busymate.ai/mcp`, which is the Busymate AI service. You sign in with your Busymate account through OAuth; the plugin stores no credentials. Tool results, which can include your customers' names, contact details and messages, are returned to Claude. The plugin runs no local code and sends data to no other destination. Adding a knowledge source makes Busymate fetch the public web page you name.
 
 You see only the workspaces you are a member of. Workspace setup, billing, team management and channel connections stay in the Busymate Console.
 
