@@ -7,12 +7,12 @@ Draft copy for the **MCP connector** submission at [claude.ai/directory/manage](
 | Field | Value |
 |---|---|
 | Name | Busymate AI |
-| Slug | `busymate-ai` (permanent; confirm before publishing) |
-| Server URL | `https://busymate.ai/mcp/claude` |
+| Slug | `busymate-ai` (permanent; the marketing site's "Add to Claude" button links to `claude.ai/directory/busymate-ai`) |
+| Server URL | `https://busymate.ai/mcp` |
 | Transport | Streamable HTTP |
 | Auth | OAuth 2.1 with PKCE and dynamic client registration; lazy auth (tools are listed before sign-in, and calls need sign-in) |
 | Categories (1–5) | Customer support; Productivity; Business. Use the closest portal names. |
-| Docs | `https://busymate.ai/docs/guides/claude` (to be published) |
+| Docs | `https://busymate.ai/docs/guides/claude-connector` |
 | Privacy | `https://busymate.ai/apps/privacy` |
 | Terms | `https://busymate.ai/apps/terms` |
 | Support | `https://busymate.ai/apps/support` · hi@busymate.ai |
@@ -20,19 +20,17 @@ Draft copy for the **MCP connector** submission at [claude.ai/directory/manage](
 
 ## One-liner (200 characters max)
 
-Review and answer your Busymate AI customer conversations and handoff requests from Claude, and search your workspace knowledge.
+Work your Busymate AI inbox, handoff requests and knowledge from a Claude conversation.
 
 ## Description (2,000 characters max)
 
-Busymate AI is the assistant that answers a business's customers on its website, using the business's own knowledge. This connector lets owners and support staff work their Busymate inbox from Claude:
+Official copy from the marketing site (busymate.ai/connectors/claude and its source strings); do not reword here.
 
-- see which workspaces have open conversations and handoff requests;
-- read customer conversations and handoff requests;
-- reply to customers, resolve handoff requests and leave internal notes, each after you approve it in Claude;
-- search workspace knowledge, and add a public web page as a knowledge source;
-- get the snippet that installs the assistant on your website.
+Work your Busymate AI inbox, handoff requests and knowledge from a Claude conversation.
 
-Sign in with your Busymate AI account. The connector sees only the workspaces you belong to. Workspace setup, billing, team management and channel connections stay in the Busymate Console.
+Add the Busymate AI connector from Claude's connector directory and sign in with your own account. Claude can then list your workspaces, show inbox counts, read transcripts, open and answer handoff requests, and search or add knowledge — with your role's permissions, and a reply to a customer waits for your approval before it is sent.
+
+Nothing to paste: you sign in with your Busymate AI account, and the connector acts with your role in each workspace.
 
 ## Data handling answers
 
@@ -67,7 +65,7 @@ Paste into the portal's reviewer instructions. Credentials are in the Vault as `
 ```
 Busymate AI — reviewer access
 
-1. Connect the Busymate AI connector (claude.ai Settings > Connectors). If asked for a server URL, use https://busymate.ai/mcp/claude.
+1. Connect the Busymate AI connector (claude.ai Settings > Connectors). If asked for a server URL, use https://busymate.ai/mcp.
 2. When asked to sign in, you land on https://busymate.ai/login. Enter the reviewer email and password provided in this submission. It is email and password only: no MFA, no email code, no sign-up. Then approve the consent screen.
 3. The account owns the workspace "Demo Bakery", a fictional bakery that also sells baking equipment. All customers, addresses and orders in it are invented.
 4. Things to try:

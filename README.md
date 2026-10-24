@@ -2,10 +2,12 @@
 
 Anthropic directory listings for [Busymate AI](https://busymate.ai):
 
-1. **MCP connector.** The hosted server at `https://busymate.ai/mcp/claude` is submitted by URL in the developer portal at [claude.ai/directory/manage](https://claude.ai/directory/manage). The listing copy, example prompts and reviewer steps are in [`submission/`](submission/).
+1. **MCP connector.** The hosted server at `https://busymate.ai/mcp` is submitted by URL in the developer portal at [claude.ai/directory/manage](https://claude.ai/directory/manage). The listing copy, example prompts and reviewer steps are in [`submission/`](submission/).
 2. **Plugin bundle.** The folder [`plugin/`](plugin/) bundles the same server with two skills for claude.ai, Cowork and Claude Code. Submit it with plugin path `plugin`.
 
-**Status: draft, not submitted.** The server profile does not exist yet; `node scripts/scan-live.mjs` lists what is missing. See [docs/submission-checklist.md](docs/submission-checklist.md).
+Work your Busymate AI inbox, handoff requests and knowledge from a Claude conversation.
+
+Both submissions use the one Busymate AI server, `https://busymate.ai/mcp`, the same server every AI assistant uses (`https://busymate.ai/mcp/claude` stays a permanent alias). `node scripts/scan-live.mjs` compares it with `submission/tools.json`. Submission status: [docs/submission-checklist.md](docs/submission-checklist.md).
 
 ## Layout
 
