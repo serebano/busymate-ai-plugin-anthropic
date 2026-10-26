@@ -67,9 +67,9 @@ Two submissions from the same organization: first the **MCP connector** (by URL)
 
 ## Submission status
 
-Updated 2026-10-24.
+Updated 2026-10-26.
 
 | Item | Id | State |
 |---|---|---|
 | MCP connector listing `busymate-ai` | server `ebe9e5fd-1ba9-46eb-b2b8-d0ec9cfd4636` | Published (Community). An edit is in review: server URL `https://busymate.ai/mcp` (was `/mcp/claude`, which stays a permanent alias for organizations that added it there) and the official one-liner and description. Authentication: always required, Dynamic Client Registration. |
-| Plugin `busymate-ai` | plugin `3d321809-93c1-414d-812d-81b41257fd14` | v1.0.0 (`505456c`) live. v1.1.0 (`ba1ee20`, this repo's `main`) is being scanned; then **Review and publish**. |
+| Plugin `busymate-ai` | plugin `3d321809-93c1-414d-812d-81b41257fd14` | v1.0.0 (`505456c`) live. v1.1.0 (`ba1ee20`, this repo's `main`) passed its scan; **Publish update** was recorded on 2026-10-26 and waits for an Anthropic reviewer. The listing still shows v1.0.0 live until then. |
