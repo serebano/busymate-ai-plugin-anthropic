@@ -18,7 +18,7 @@ It includes two skills: **inbox-triage**, a routine for working through open han
 
 This plugin is published by EFIRITY PTE. LTD. (UEN 202402844G), 68 Circular Road #02-01, Singapore 049422.
 
-The plugin connects to one remote MCP server, `https://busymate.ai/mcp`, which is the Busymate AI service. You sign in with your Busymate account through OAuth; the plugin stores no credentials. Tool results, which can include your customers' names, contact details and messages, are returned to Claude. The plugin runs no local code and sends data to no other destination. Adding a knowledge source makes Busymate fetch the public web page you name.
+The plugin connects to one remote MCP server, `https://busymate.ai/mcp`, which is the Busymate AI service. You sign in with your Busymate account through OAuth; the plugin stores no credentials. Tool results are returned to Claude. The plugin's tools return only the fields on a fixed list; every category they can return (for example what your customers wrote in conversations and handoff requests) is listed with its purpose, source and retention in the section "Data returned by the ChatGPT and Claude apps" of https://busymate.ai/apps/privacy. The plugin runs no local code and sends data to no other destination. Adding a knowledge source makes Busymate fetch the public web page you name.
 
 You see only the workspaces you are a member of. Workspace setup, billing, team management and channel connections stay in the Busymate Console.
 

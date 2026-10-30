@@ -1,5 +1,5 @@
 {
-  "_note": "The tools of the Busymate AI MCP server at https://busymate.ai/mcp as a signed-in workspace admin sees them from Claude. Generated from the live server by scripts/gen-tools.mjs; scripts/scan-live.mjs compares it with the live tools/list.",
+  "_note": "The tools of the Busymate AI MCP server at https://busymate.ai/mcp as a signed-in workspace admin sees them from Claude. Generated from the live server by scripts/gen-tools.mjs; scripts/scan-live.mjs compares it with the live tools/list. busymate-ai-src#3207: the 14 directory-profile tools carry `dataReturned` (they return only those fields to a Claude app connection, disclosed at https://busymate.ai/apps/privacy); list_api_keys and revoke_api_key are not offered to Claude apps.",
   "serverUrl": "https://busymate.ai/mcp",
   "tools": [
     {
@@ -210,6 +210,34 @@
         "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
         "destructiveHint": "Reads only, so nothing is changed or removed.",
         "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      },
+      "dataReturned": {
+        "categories": [
+          "Status and error messages",
+          "Workspace details",
+          "Record identifiers"
+        ],
+        "fields": [
+          "ok",
+          "refused",
+          "code",
+          "message",
+          "message_key",
+          "retry",
+          "next",
+          "error",
+          "notice",
+          "count",
+          "scoped",
+          "tenants[].id",
+          "tenants[].name",
+          "tenants[].slug",
+          "tenants[].status",
+          "tenants[].published",
+          "tenants[].domains[]",
+          "tenants[].member_count",
+          "tenants[].my_role_key"
+        ]
       }
     },
     {
@@ -225,6 +253,34 @@
         "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
         "destructiveHint": "Reads only, so nothing is changed or removed.",
         "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      },
+      "dataReturned": {
+        "categories": [
+          "Status and error messages",
+          "Record identifiers",
+          "Workspace details"
+        ],
+        "fields": [
+          "ok",
+          "refused",
+          "code",
+          "message",
+          "message_key",
+          "retry",
+          "next",
+          "error",
+          "notice",
+          "tenant.id",
+          "tenant.name",
+          "tenant.slug",
+          "tenant.status",
+          "tenant.published",
+          "tenant.domains[].host",
+          "tenant.domains[].is_primary",
+          "tenant.member_count",
+          "tenant.my_role_name",
+          "tenant.is_tenant_admin"
+        ]
       }
     },
     {
@@ -585,6 +641,32 @@
         "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
         "destructiveHint": "Reads only, so nothing is changed or removed.",
         "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      },
+      "dataReturned": {
+        "categories": [
+          "Status and error messages",
+          "Knowledge content"
+        ],
+        "fields": [
+          "ok",
+          "refused",
+          "code",
+          "message",
+          "message_key",
+          "retry",
+          "next",
+          "error",
+          "notice",
+          "result.query",
+          "result.results[].title",
+          "result.results[].url",
+          "result.results[].section",
+          "result.results[].snippet",
+          "result.results[].score",
+          "result.answer.text",
+          "result.answer.citation",
+          "result.refused"
+        ]
       }
     },
     {
@@ -1155,6 +1237,26 @@
         "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
         "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
         "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      },
+      "dataReturned": {
+        "categories": [
+          "Status and error messages",
+          "Action results"
+        ],
+        "fields": [
+          "ok",
+          "refused",
+          "code",
+          "message",
+          "message_key",
+          "retry",
+          "next",
+          "error",
+          "notice",
+          "result.ok",
+          "result.status",
+          "result.transition"
+        ]
       }
     },
     {
@@ -1485,6 +1587,37 @@
         "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
         "destructiveHint": "Reads only, so nothing is changed or removed.",
         "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      },
+      "dataReturned": {
+        "categories": [
+          "Status and error messages",
+          "Inbox counts"
+        ],
+        "fields": [
+          "ok",
+          "refused",
+          "code",
+          "message",
+          "message_key",
+          "retry",
+          "next",
+          "error",
+          "notice",
+          "result.scope.status",
+          "result.scope.includeTest",
+          "result.scope.complete",
+          "result.assignment.mine",
+          "result.assignment.unassigned",
+          "result.assignment.all",
+          "result.types.ai",
+          "result.types.human",
+          "result.types.voice",
+          "result.types.call",
+          "result.types.channels",
+          "result.types.system",
+          "result.channels[].id",
+          "result.channels[].count"
+        ]
       }
     },
     {
@@ -3903,39 +4036,9 @@
       }
     },
     {
-      "name": "list_api_keys",
-      "title": "List API Keys",
-      "summary": "Lists a workspace's API keys with label, prefix, scopes, and created, last-used and revoked timestamps.",
-      "annotations": {
-        "readOnlyHint": true,
-        "destructiveHint": false,
-        "openWorldHint": false
-      },
-      "justifications": {
-        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
-        "destructiveHint": "Reads only, so nothing is changed or removed.",
-        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
-      }
-    },
-    {
       "name": "rotate_api_key",
       "title": "Rotate API Key",
       "summary": "Revokes the API key `key_id` and creates a replacement with the same label and scopes.",
-      "annotations": {
-        "readOnlyHint": false,
-        "destructiveHint": true,
-        "openWorldHint": false
-      },
-      "justifications": {
-        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
-        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
-        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
-      }
-    },
-    {
-      "name": "revoke_api_key",
-      "title": "Revoke API Key",
-      "summary": "Revokes the workspace API key `key_id` immediately, so requests that use it stop authenticating.",
       "annotations": {
         "readOnlyHint": false,
         "destructiveHint": true,
@@ -4005,6 +4108,47 @@
         "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
         "destructiveHint": "Reads only, so nothing is changed or removed.",
         "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      },
+      "dataReturned": {
+        "categories": [
+          "Status and error messages",
+          "Install snippet",
+          "Record identifiers"
+        ],
+        "fields": [
+          "ok",
+          "refused",
+          "code",
+          "message",
+          "message_key",
+          "retry",
+          "next",
+          "error",
+          "notice",
+          "kind",
+          "version",
+          "step",
+          "host",
+          "tenant_id",
+          "hosted_url",
+          "revision",
+          "embed_origins[]",
+          "snippet.platform",
+          "snippet.platforms[]",
+          "snippet.language",
+          "snippet.code",
+          "snippet.steps_key",
+          "web_sdk.package",
+          "web_sdk.version",
+          "web_sdk.docs_url",
+          "resource_link.type",
+          "resource_link.uri",
+          "resource_link.name",
+          "resource_link.mimeType",
+          "stamp.createdAt",
+          "stamp.seq",
+          "summary"
+        ]
       }
     },
     {
@@ -4290,6 +4434,31 @@
         "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
         "destructiveHint": "Reads only, so nothing is changed or removed.",
         "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      },
+      "dataReturned": {
+        "categories": [
+          "Status and error messages",
+          "Knowledge content"
+        ],
+        "fields": [
+          "ok",
+          "refused",
+          "code",
+          "message",
+          "message_key",
+          "retry",
+          "next",
+          "error",
+          "notice",
+          "sources[].label",
+          "sources[].url",
+          "sources[].kind",
+          "sources[].enabled",
+          "sources[].status",
+          "sources[].pages_indexed",
+          "sources[].last_indexed_at",
+          "sources[].last_error"
+        ]
       }
     },
     {
@@ -4305,6 +4474,28 @@
         "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
         "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
         "openWorldHint": "Reaches people or systems outside the workspace: a customer, an email or phone address, a web address the user names, or a connected third-party account."
+      },
+      "dataReturned": {
+        "categories": [
+          "Status and error messages",
+          "Action results"
+        ],
+        "fields": [
+          "ok",
+          "refused",
+          "code",
+          "message",
+          "message_key",
+          "retry",
+          "next",
+          "error",
+          "notice",
+          "source.label",
+          "source.url",
+          "source.kind",
+          "source.status",
+          "source.max_pages"
+        ]
       }
     },
     {
@@ -4470,6 +4661,40 @@
         "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
         "destructiveHint": "Reads only, so nothing is changed or removed.",
         "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      },
+      "dataReturned": {
+        "categories": [
+          "Status and error messages",
+          "Record identifiers",
+          "Workspace details",
+          "Conversation records"
+        ],
+        "fields": [
+          "ok",
+          "refused",
+          "code",
+          "message",
+          "message_key",
+          "retry",
+          "next",
+          "error",
+          "notice",
+          "result.conversations[].session_id",
+          "result.conversations[].workspace",
+          "result.conversations[].tenant_id",
+          "result.conversations[].channel_kind",
+          "result.conversations[].created_at",
+          "result.conversations[].last_active_at",
+          "result.conversations[].live",
+          "result.conversations[].is_test",
+          "result.conversations[].permalink",
+          "result.next_cursor",
+          "result.workspaces[].tenant_id",
+          "result.workspaces[].name",
+          "result.workspaces[].count",
+          "result.workspaces[].next_cursor",
+          "result.workspaces[].error"
+        ]
       }
     },
     {
@@ -4485,6 +4710,33 @@
         "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
         "destructiveHint": "Reads only, so nothing is changed or removed.",
         "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      },
+      "dataReturned": {
+        "categories": [
+          "Status and error messages",
+          "Record identifiers",
+          "Conversation content"
+        ],
+        "fields": [
+          "ok",
+          "refused",
+          "code",
+          "message",
+          "message_key",
+          "retry",
+          "next",
+          "error",
+          "notice",
+          "result.session_id",
+          "result.messages[].role",
+          "result.messages[].at",
+          "result.messages[].text",
+          "result.total",
+          "result.offset",
+          "result.next_offset",
+          "result.running",
+          "result.truncated"
+        ]
       }
     },
     {
@@ -4500,6 +4752,38 @@
         "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
         "destructiveHint": "Reads only, so nothing is changed or removed.",
         "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      },
+      "dataReturned": {
+        "categories": [
+          "Status and error messages",
+          "Record identifiers",
+          "Handoff requests"
+        ],
+        "fields": [
+          "ok",
+          "refused",
+          "code",
+          "message",
+          "message_key",
+          "retry",
+          "next",
+          "error",
+          "notice",
+          "result.interventions[].id",
+          "result.interventions[].display_id",
+          "result.interventions[].title",
+          "result.interventions[].summary",
+          "result.interventions[].status",
+          "result.interventions[].priority",
+          "result.interventions[].channel",
+          "result.interventions[].customer_locale",
+          "result.interventions[].requested_at",
+          "result.interventions[].acknowledged_at",
+          "result.interventions[].first_response_at",
+          "result.interventions[].resolved_at",
+          "result.interventions[].waiting_since",
+          "result.interventions[].permalink"
+        ]
       }
     },
     {
@@ -4515,6 +4799,45 @@
         "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
         "destructiveHint": "Reads only, so nothing is changed or removed.",
         "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      },
+      "dataReturned": {
+        "categories": [
+          "Status and error messages",
+          "Record identifiers",
+          "Handoff requests"
+        ],
+        "fields": [
+          "ok",
+          "refused",
+          "code",
+          "message",
+          "message_key",
+          "retry",
+          "next",
+          "error",
+          "notice",
+          "result.request.id",
+          "result.request.display_id",
+          "result.request.title",
+          "result.request.summary",
+          "result.request.status",
+          "result.request.priority",
+          "result.request.channel",
+          "result.request.customer_locale",
+          "result.request.requested_at",
+          "result.request.acknowledged_at",
+          "result.request.first_response_at",
+          "result.request.resolved_at",
+          "result.request.waiting_since",
+          "result.request.permalink",
+          "result.messages[].sender_kind",
+          "result.messages[].event_kind",
+          "result.messages[].body",
+          "result.messages[].created_at",
+          "result.notes[].body",
+          "result.notes[].created_at",
+          "result.permalink"
+        ]
       }
     },
     {
@@ -4545,6 +4868,26 @@
         "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
         "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
         "openWorldHint": "Reaches people or systems outside the workspace: a customer, an email or phone address, a web address the user names, or a connected third-party account."
+      },
+      "dataReturned": {
+        "categories": [
+          "Status and error messages",
+          "Action results"
+        ],
+        "fields": [
+          "ok",
+          "refused",
+          "code",
+          "message",
+          "message_key",
+          "retry",
+          "next",
+          "error",
+          "notice",
+          "result.ok",
+          "result.status",
+          "result.transition"
+        ]
       }
     },
     {
@@ -4560,6 +4903,26 @@
         "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
         "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
         "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      },
+      "dataReturned": {
+        "categories": [
+          "Status and error messages",
+          "Action results"
+        ],
+        "fields": [
+          "ok",
+          "refused",
+          "code",
+          "message",
+          "message_key",
+          "retry",
+          "next",
+          "error",
+          "notice",
+          "result.ok",
+          "result.status",
+          "result.transition"
+        ]
       }
     },
     {
