@@ -27,6 +27,8 @@ const J = {
   owOpen: 'Reaches people or systems outside the workspace: a customer, an email or phone address, a web address the user names, or a connected third-party account.',
 };
 const first = (d) => (d || '').split(/(?<=\.)\s/)[0].slice(0, 300);
+// busymate-ai-src#3207 — `dataReturned` (the 14 app tools' allowlisted fields) is kept across regenerations.
+const previous = fs.existsSync(OUT) ? new Map(JSON.parse(fs.readFileSync(OUT, 'utf8')).tools.map((t) => [t.name, t.dataReturned])) : new Map();
 const out = {
   _note: 'The tools of the Busymate AI MCP server at https://busymate.ai/mcp as a signed-in workspace admin sees them from Claude. Generated from the live server by scripts/gen-tools.mjs; scripts/scan-live.mjs compares it with the live tools/list.',
   serverUrl: url,
@@ -42,6 +44,7 @@ const out = {
         destructiveHint: a.destructiveHint ? J.dWrite : J.dRead,
         openWorldHint: a.openWorldHint ? J.owOpen : J.owClosed,
       },
+      ...(previous.get(t.name) ? { dataReturned: previous.get(t.name) } : {}),
     };
   }),
 };

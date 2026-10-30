@@ -1,7 +1,7 @@
 {
   "name": "busymate-ai",
   "displayName": "Busymate AI",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Work your Busymate AI inbox, handoff requests and knowledge from a Claude conversation.",
   "author": {
     "name": "EFIRITY PTE. LTD.",
@@ -10,8 +10,12 @@
   },
   "homepage": "https://busymate.ai",
   "repository": "https://github.com/serebano/busymate-ai-plugin-anthropic",
+  "icon": "./assets/logo.png",
+  "documentationUrl": "https://busymate.ai/docs/guides/claude-connector",
+  "supportUrl": "https://busymate.ai/apps/support",
   "license": "MIT",
   "privacyPolicyUrl": "https://busymate.ai/apps/privacy",
+  "termsOfServiceUrl": "https://busymate.ai/apps/terms",
   "keywords": [
     "customer support",
     "inbox",

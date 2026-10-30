@@ -73,3 +73,11 @@ Updated 2026-10-26.
 |---|---|---|
 | MCP connector listing `busymate-ai` | server `ebe9e5fd-1ba9-46eb-b2b8-d0ec9cfd4636` | Published (Community). An edit is in review: server URL `https://busymate.ai/mcp` (was `/mcp/claude`, which stays a permanent alias for organizations that added it there) and the official one-liner and description. Authentication: always required, Dynamic Client Registration. |
 | Plugin `busymate-ai` | plugin `3d321809-93c1-414d-812d-81b41257fd14` | v1.0.0 (`505456c`) live. v1.1.0 (`ba1ee20`, this repo's `main`) passed its scan; **Publish update** was recorded on 2026-10-26 and waits for an Anthropic reviewer. The listing still shows v1.0.0 live until then. |
+
+## 1.1.1 (2026-10-30, busymate-ai-src#3207)
+
+Directory Review tab for v1.1.0 (6492ec1), read 2026-10-30:
+
+- Validation, note: "Images and fonts passed without a code check" for `assets/logo.png`. Informational: a well-formed PNG is not read as code. No change possible or needed while the plugin ships a logo.
+- Directory policy, warning: "Unrecognized field in plugin.json · privacyPolicyUrl ... No action needed." `privacyPolicyUrl` is a documented listing field (code.claude.com plugins reference: the directory reads `icon`, `documentationUrl`, `supportUrl`, `privacyPolicyUrl`, `termsOfServiceUrl` from plugin.json; `claude plugin validate` 2.1.312 passes with them). Kept; the scanner's warning is out of date.
+- Listing (read at submission creation, not updated by new versions): Support shows `busymate.ai/mcp/claude%60,` (malformed), Icon "Expired", Documentation "No value". Owner fix: plugin page, **Edit**, set Support `https://busymate.ai/apps/support`, Documentation `https://busymate.ai/docs/guides/claude-connector`, re-import the icon from the repository.
