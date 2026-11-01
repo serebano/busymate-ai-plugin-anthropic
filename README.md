@@ -1,6 +1,6 @@
 # Busymate AI for Claude
 
-Anthropic directory listings for [Busymate AI](https://busymate.ai):
+Anthropic directory listings for [Busymate AI](https://busymate.ai?utm_source=github&utm_medium=readme&utm_campaign=busymate-ai-plugin-anthropic):
 
 1. **MCP connector.** The hosted server at `https://busymate.ai/mcp` is submitted by URL in the developer portal at [claude.ai/directory/manage](https://claude.ai/directory/manage). The listing copy, example prompts and reviewer steps are in [`submission/`](submission/).
 2. **Plugin bundle.** The folder [`plugin/`](plugin/) bundles the same server with two skills for claude.ai, Cowork and Claude Code. Submit it with plugin path `plugin`.
