@@ -777,7 +777,7 @@
     {
       "name": "set_tenant_branding",
       "title": "Set Workspace Branding",
-      "summary": "Sets a workspace's white-label `branding`, such as product name, assistant name, tagline, logo, accent color, support URL, tone, answer length, persona addendum and widget theme and launcher.",
+      "summary": "Sets a workspace's white-label `branding`, the one record for product name, assistant name, tagline, greeting, logo, accent color, support URL, suggested questions, widget theme and launcher, tone, answer length and persona addendum.",
       "annotations": {
         "readOnlyHint": false,
         "destructiveHint": true,
@@ -1752,6 +1752,21 @@
       "justifications": {
         "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
         "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "get_tenant_setup_progress",
+      "title": "Get Workspace Setup Progress",
+      "summary": "Returns the Your setup checklist of a workspace for a channel and sources: each step with its title, whether it is done and which one is open, the counts the setup screen shows, and the evidence behind the ticks (ready knowledge kinds, a pinned answer, connectors, a tried answer, connected and answe",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
         "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
       }
     },
