@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.2
+
+- `submission/tools.json` regenerated from the live server (346 tools): 48 live tools were undeclared and 6 declared tools had been retired. `scripts/scan-live.mjs` reports 0 problems.
+- `scripts/gen-tools.mjs` works without a token: the pre-auth `tools/list` shows the whole profile under lazy auth.
+
 ## 1.1.1
 
 - Data disclosure (busymate-ai-src#3207): the 14 directory-profile tools return only allowlisted fields to a Claude app connection, and `submission/tools.json` lists them per tool (`dataReturned`). The apps privacy policy lists every category with purpose, source and retention. `list_api_keys` and `revoke_api_key` are no longer offered to Claude apps.
