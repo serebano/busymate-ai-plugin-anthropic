@@ -1,5 +1,5 @@
 {
-  "_note": "The tools of the Busymate AI MCP server at https://busymate.ai/mcp as a signed-in workspace admin sees them from Claude. Generated from the live server by scripts/gen-tools.mjs; scripts/scan-live.mjs compares it with the live tools/list. busymate-ai-src#3207: the 14 directory-profile tools carry `dataReturned` (they return only those fields to a Claude app connection, disclosed at https://busymate.ai/apps/privacy); list_api_keys and revoke_api_key are not offered to Claude apps.",
+  "_note": "The tools of the Busymate AI MCP server at https://busymate.ai/mcp as a signed-in workspace admin sees them from Claude. Generated from the live server by scripts/gen-tools.mjs; scripts/scan-live.mjs compares it with the live tools/list.",
   "serverUrl": "https://busymate.ai/mcp",
   "tools": [
     {
@@ -479,39 +479,9 @@
       }
     },
     {
-      "name": "list_tenant_support_resources",
-      "title": "List Workspace Support Resources",
-      "summary": "Lists the knowledge sources, enabled skills and enabled published plugins that can be selected for a workspace runtime, as selector metadata only (no contents or manifests).",
-      "annotations": {
-        "readOnlyHint": true,
-        "destructiveHint": false,
-        "openWorldHint": false
-      },
-      "justifications": {
-        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
-        "destructiveHint": "Reads only, so nothing is changed or removed.",
-        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
-      }
-    },
-    {
       "name": "publish_tenant_runtime",
       "title": "Publish Workspace Runtime",
       "summary": "Publishes and activates a workspace's runtime so its assistant is live with the workspace branding.",
-      "annotations": {
-        "readOnlyHint": false,
-        "destructiveHint": true,
-        "openWorldHint": false
-      },
-      "justifications": {
-        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
-        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
-        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
-      }
-    },
-    {
-      "name": "upsert_tenant_support_connector",
-      "title": "Upsert Workspace Support Connector",
-      "summary": "Creates or updates a workspace MCP connector (`endpoint`, `namespace`, `title`, `description`).",
       "annotations": {
         "readOnlyHint": false,
         "destructiveHint": true,
@@ -569,9 +539,39 @@
       }
     },
     {
+      "name": "get_tenant_handoff_triggers",
+      "title": "Get Workspace Handoff Triggers",
+      "summary": "Returns a workspace's automatic hand-off triggers: hand off after a number of unanswered replies or failed actions, when the customer is upset, or on chosen keywords.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "set_tenant_handoff_triggers",
+      "title": "Set Workspace Handoff Triggers",
+      "summary": "Sets a workspace's automatic hand-off triggers: `unanswered_turns` and `failed_actions` (0-10, 0 = off), `negative_sentiment` and `keywords`.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
       "name": "get_tenant_usage",
       "title": "Get Workspace Usage",
-      "summary": "Returns usage totals for a partner workspace: customer counts (total, active, redacted), active members, conversations (total and last 30 days), visitor sessions (total and last 30 days) and knowledge sources.",
+      "summary": "Returns usage totals for a partner workspace: customer counts (total, active, redacted), active members, Inbox requests (`inbox_requests`: handoffs, emails and calls; not conversations, total and last 30 days), visitor sessions (total and last 30 days) and knowledge sources.",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
@@ -616,7 +616,37 @@
     {
       "name": "set_tenant_account_tools_policy",
       "title": "Set Workspace Account Tools Policy",
-      "summary": "Sets whether a workspace asks signed-in customers to authorize account tools (`ask_users_to_authorize`) and which connectors are its own (`own_connector_ids`).",
+      "summary": "Sets whether a workspace asks signed-in customers to authorize account tools (`ask_users_to_authorize`), which connectors are its own (`own_connector_ids`), or one connector's customer identity (`connector_id`, `customer_identity`) and confirm override (`ask`).",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "get_tenant_guardrails",
+      "title": "Get Workspace Guardrails",
+      "summary": "Returns a workspace's guardrails for customer messages: the mode (off, shadow or enforce), blocked phrases and topics, the allowed scope, whether prompt-injection screening and the reply check are on, and the optional refusal text.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "set_tenant_guardrails",
+      "title": "Set Workspace Guardrails",
+      "summary": "Sets a workspace's guardrails for customer messages: mode (off, shadow or enforce), blocked phrases and topics, an allowed scope, prompt-injection screening, the reply check and an optional exact refusal text.",
       "annotations": {
         "readOnlyHint": false,
         "destructiveHint": true,
@@ -715,8 +745,8 @@
       }
     },
     {
-      "name": "send_test_notification",
-      "title": "Send Test Notification",
+      "name": "send_my_test_notification",
+      "title": "Send My Test Notification",
       "summary": "Sends a test notification to yourself, delivered in-app and as browser push to your registered endpoints for `tenant_id`, or to all of them if omitted.",
       "annotations": {
         "readOnlyHint": false,
@@ -747,52 +777,7 @@
     {
       "name": "set_tenant_branding",
       "title": "Set Workspace Branding",
-      "summary": "Sets a workspace's white-label `branding`, such as product name, assistant name, tagline, logo, accent color, support URL, persona addendum and widget theme and launcher.",
-      "annotations": {
-        "readOnlyHint": false,
-        "destructiveHint": true,
-        "openWorldHint": false
-      },
-      "justifications": {
-        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
-        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
-        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
-      }
-    },
-    {
-      "name": "connect_slack_channel",
-      "title": "Connect Slack Channel",
-      "summary": "Connects or reconnects a workspace's Slack app as a customer channel, with optional `scope` and `channel_allowlist`.",
-      "annotations": {
-        "readOnlyHint": false,
-        "destructiveHint": true,
-        "openWorldHint": true
-      },
-      "justifications": {
-        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
-        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
-        "openWorldHint": "Reaches people or systems outside the workspace: a customer, an email or phone address, a web address the user names, or a connected third-party account."
-      }
-    },
-    {
-      "name": "set_slack_channel_scope",
-      "title": "Set Slack Channel Scope",
-      "summary": "Changes a connected Slack channel's `scope` (dm, mention or both) and/or its `channel_allowlist`, without touching its secrets.",
-      "annotations": {
-        "readOnlyHint": false,
-        "destructiveHint": true,
-        "openWorldHint": false
-      },
-      "justifications": {
-        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
-        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
-        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
-      }
-    },
-    {
-      "name": "disable_slack_channel",
-      "title": "Disable Slack Channel",
-      "summary": "Disables a workspace's Slack channel and stops message dispatch.",
+      "summary": "Sets a workspace's white-label `branding`, such as product name, assistant name, tagline, logo, accent color, support URL, tone, answer length, persona addendum and widget theme and launcher.",
       "annotations": {
         "readOnlyHint": false,
         "destructiveHint": true,
@@ -912,7 +897,7 @@
     {
       "name": "delete_tenant_conversation",
       "title": "Delete Workspace Conversation",
-      "summary": "Permanently erases one workspace conversation by `session_id`, including its event stream, sub-agent runs, turn telemetry, host-page tool-call log and ownership record, and writes an audit entry.",
+      "summary": "Permanently erases exactly one workspace conversation, given its `session_id`, including its event stream, sub-agent runs, turn telemetry, host-page tool-call log and ownership record, and writes an audit entry.",
       "annotations": {
         "readOnlyHint": false,
         "destructiveHint": true,
@@ -996,6 +981,96 @@
       "justifications": {
         "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
         "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "list_tenant_support_versions",
+      "title": "List Workspace Support Versions",
+      "summary": "Lists the published assistant versions of a workspace, newest first: who published each one and when, the version it restored if any, the result of its pre-publish checks, and a short summary of what changed from the version before.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "get_tenant_support_version_diff",
+      "title": "Get Workspace Support Version Diff",
+      "summary": "Returns every change between two published assistant versions of a workspace (by default the live version and the one before it), field by field.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "restore_tenant_support_version",
+      "title": "Restore Workspace Support Version",
+      "summary": "Restores an older published assistant version of a workspace by publishing its settings again as a new version, after the usual pre-publish checks; the restore is recorded in the audit log.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "get_tenant_customer_memory",
+      "title": "Get Workspace Customer Memory",
+      "summary": "Returns the memory kept for one customer of a workspace (`person_key`): a summary of their earlier conversations, their open issues, when it was updated and whether a person corrected it.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "set_tenant_customer_memory",
+      "title": "Set Workspace Customer Memory",
+      "summary": "Replaces the memory kept for one signed-in customer of a workspace (`person_key`) with a corrected summary and open issues.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "forget_tenant_customer_memory",
+      "title": "Forget Workspace Customer Memory",
+      "summary": "Deletes the memory kept for one customer of a workspace (`person_key`): the summary of their earlier conversations and their open issues.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
         "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
       }
     },
@@ -2133,7 +2208,7 @@
     {
       "name": "get_tenant_accountability_overview",
       "title": "Get Workspace Accountability Overview",
-      "summary": "Returns a workspace's accountability overview for the last `days` days (default 30): SLA attainment per policy, business hours, and CSAT settings with rollups.",
+      "summary": "Returns a workspace's accountability overview for the last `days` days (default 30): SLA attainment per policy, business hours, CSAT settings with rollups, and where the one-tap rating is asked after AI conversations (`ai_rating`).",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
@@ -2193,7 +2268,7 @@
     {
       "name": "set_tenant_csat_settings",
       "title": "Set Workspace Csat Settings",
-      "summary": "Enables or disables the post-resolution CSAT survey and sets which label keys (`label_keys`) trigger it.",
+      "summary": "Enables or disables the post-resolution CSAT survey and sets which label keys (`label_keys`) trigger it, and chooses where the one-tap rating is asked after AI conversations (`ai_web`, `ai_telegram`, `ai_whatsapp`).",
       "annotations": {
         "readOnlyHint": false,
         "destructiveHint": true,
@@ -2284,6 +2359,36 @@
       "name": "verify_tenant_private_tools",
       "title": "Verify Workspace Private Tools",
       "summary": "Runs the workspace diagnostics as a test account (`test_account_id`): for each private connector it signs in, authorizes, lists tools, makes a read-only call, checks declared fixtures and runs one chat turn.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Reaches people or systems outside the workspace: a customer, an email or phone address, a web address the user names, or a connected third-party account."
+      }
+    },
+    {
+      "name": "get_connector_customer_identity",
+      "title": "Get Connector Customer Identity",
+      "summary": "Returns, for each connector of a workspace, how signed-in customers reach their account: the declared identity (own product, third-party sign-in, or public only), what runs now, why the two differ, whether a one-time confirm is on, and the live token check result.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "probe_connector_customer_identity",
+      "title": "Probe Connector Customer Identity",
+      "summary": "Checks now whether one connector's server accepts the platform's signed customer token for its address, and records a conclusive result.",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
@@ -3766,6 +3871,321 @@
       }
     },
     {
+      "name": "get_tenant_data_handling",
+      "title": "Get Workspace Data Handling",
+      "summary": "Returns a workspace's data handling policy: `pii_read_masking` (the workspace's own setting to mask card numbers, IBANs and national ids when its conversations are read back), `platform_pii_read_masking` (the platform-wide setting), `effective_pii_read_masking` (either one) and `updated_at`.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "set_tenant_data_handling",
+      "title": "Set Workspace Data Handling",
+      "summary": "Sets a workspace's data handling policy: `pii_read_masking` true masks card numbers, IBANs and national ids when the workspace's conversations are read back (exports, transcript and intervention reads, reply drafts, Insights evidence); false turns it off.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "get_tenant_channel_models",
+      "title": "Get Workspace Channel Models",
+      "summary": "Returns which model answers each of a workspace's channels (website widget, chat page, apps, Telegram, Telegram Business, WhatsApp, Messenger, Instagram, email, SMS, Slack, Teams, Discord, Apple Messages, API): the configured model or the default, the models the workspace may choose with a reason fo",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "preview_tenant_channel_models",
+      "title": "Preview Workspace Channel Models",
+      "summary": "Shows what a change to a workspace's channel models would do without saving it.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "set_tenant_channel_models",
+      "title": "Set Workspace Channel Models",
+      "summary": "Sets the model that answers one or more of a workspace's channels.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "get_tenant_answer_quality",
+      "title": "Get Workspace Answer Quality",
+      "summary": "Returns how strictly a workspace's assistant keeps to its knowledge (relaxed, balanced or strict) and the last days' figures: answers checked, the share grounded in the workspace's knowledge and open knowledge gaps.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "set_tenant_answer_quality",
+      "title": "Set Workspace Answer Quality",
+      "summary": "Sets how strictly a workspace's assistant keeps to its knowledge: relaxed, balanced or strict.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "list_knowledge_gaps",
+      "title": "List Knowledge Gaps",
+      "summary": "Lists the questions a workspace's assistant could not answer from its knowledge, grouped by topic, most asked first, with counts, causes, recent redacted examples and a suggested knowledge entry to start from.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "update_knowledge_gap",
+      "title": "Update Knowledge Gap",
+      "summary": "Marks a workspace's knowledge gap as resolved, dismissed or open again.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "list_assistant_templates",
+      "title": "List Assistant Templates",
+      "summary": "Lists the starter templates for common assistant types (online store, software product, clinic, restaurant, agency, hotel, general support): instructions, when to hand over to a person, topics to avoid, expected tools, starter questions and sample check cases.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "propose_assistant_config",
+      "title": "Propose Assistant Config",
+      "summary": "Turns a plain-language `description` of a business into proposed assistant instructions for a workspace, shown as a line diff against the current ones.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "preview_assistant_config_change",
+      "title": "Preview Assistant Config Change",
+      "summary": "Answers a few test questions twice, once with a workspace's current instructions and once with `proposed_instructions`, and reports the pass rate of each side.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "list_answer_checks",
+      "title": "List Answer Checks",
+      "summary": "Lists a workspace's answer checks: each question its assistant must answer right, with the expected facts, reference answer, tools it must use, sources it must name and phrases it must never say; plus suggested checks from knowledge gaps and real conversations, the latest run's summary and the answe",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "upsert_answer_check",
+      "title": "Upsert Answer Check",
+      "summary": "Adds an answer check or edits one by id: a question (2-500 characters) with expected facts, a reference answer (up to 2,000 characters), tools the answer must use in any order, sources to name and phrases never to say; at most 50 enabled per workspace.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "delete_answer_check",
+      "title": "Delete Answer Check",
+      "summary": "Deletes one answer check by id.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "run_answer_checks",
+      "title": "Run Answer Checks",
+      "summary": "Replays every enabled answer check against the workspace's draft (or published) setup on its own chat model, with its tools: tools that only read run live, tools that change data or call a person are recorded and never run.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "get_answer_check_run",
+      "title": "Get Answer Check Run",
+      "summary": "Reads one answer-check run's report, the latest by default: status, draft or published and its revision, passed, failed and regressed counts, and per check the answer given, facts found, tools used and the reasons it failed.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "save_conversation_as_answer_check",
+      "title": "Save Conversation As Answer Check",
+      "summary": "Saves one exchange from a real conversation as an answer check: the visitor's question, the answer they got as the reference answer (a human agent's reply when one answered) and the tools used as expected tools.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "get_answer_check_policy",
+      "title": "Get Answer Check Policy",
+      "summary": "Reads a workspace's answer-check policy: what a failing check does to a publish (off, warn or block), whether blocking needs a regression or any failure, and whether checks run on their own after a re-crawl, a connector or knowledge change, or a model change.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "set_answer_check_policy",
+      "title": "Set Answer Check Policy",
+      "summary": "Changes a workspace's answer-check policy: publish gate off, warn or block; block on a regression or on any failure; automatic runs on or off.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "get_answer_check_gate",
+      "title": "Get Answer Check Gate",
+      "summary": "Says whether publishing a workspace's draft passes its answer-check gate: the mode, the verdict (pass, fail, no checks, not run, running or off), whether the publish would be blocked, the run it read and the reason.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
       "name": "set_tenant_feature",
       "title": "Set Workspace Feature",
       "summary": "Turns one plan feature (currently `voice`) on or off for a workspace via `feature` and `enabled`.",
@@ -4036,9 +4456,39 @@
       }
     },
     {
+      "name": "list_api_keys",
+      "title": "List API Keys",
+      "summary": "Lists a workspace's API keys with label, prefix, scopes, and created, last-used and revoked timestamps.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
       "name": "rotate_api_key",
       "title": "Rotate API Key",
       "summary": "Revokes the API key `key_id` and creates a replacement with the same label and scopes.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "title": "Revoke API Key",
+      "summary": "Revokes the workspace API key `key_id` immediately, so requests that use it stop authenticating.",
       "annotations": {
         "readOnlyHint": false,
         "destructiveHint": true,
@@ -4362,6 +4812,66 @@
       }
     },
     {
+      "name": "read_docs_page",
+      "title": "Read Docs Page",
+      "summary": "Returns one published documentation page or guide as markdown, named by `path` (its URL or site path) or `slug`, with its URL and each section's URL.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "list_docs_sections",
+      "title": "List Docs Sections",
+      "summary": "Returns the published documentation tree (pages, guides, glossary and legal pages, each with its URL and summary), or with `path` the sections of that one page with their URLs.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "get_setup_guide",
+      "title": "Get Setup Guide",
+      "summary": "Returns the setup guide for one `channel` or `connector`, given by id or name: its status (live, beta or coming soon), its connector page, the guide URL and the URL of each step section, and related guides.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "get_changelog",
+      "title": "Get Changelog",
+      "summary": "Returns the published release notes, newest first: build, date, area, summary and the URL of each entry, plus the changelog, RSS and Markdown links.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
       "name": "get_whitelabel_overview",
       "title": "Get Whitelabel Overview",
       "summary": "Describes how white-label works: your own name and web address, the one-script web widget, launching for signed-in customers, mobile app integration, connecting your MCP server as tools, and the hand-off to your team.",
@@ -4464,7 +4974,7 @@
     {
       "name": "add_tenant_knowledge_source",
       "title": "Add Workspace Knowledge Source",
-      "summary": "Adds an HTTPS website as a knowledge source, given `url` and optional `label` and `max_pages`, and queues a same-origin crawl that respects robots rules and rate limits.",
+      "summary": "Adds an HTTPS website as a knowledge source, given `url` and optional `label` and `max_pages`, and queues a same-origin crawl that reads the site's sitemap first, then follows links, up to the plan's page allowance, respecting robots rules and rate limits.",
       "annotations": {
         "readOnlyHint": false,
         "destructiveHint": true,
@@ -4544,6 +5054,96 @@
       }
     },
     {
+      "name": "create_tenant_knowledge_file_upload",
+      "title": "Create Workspace Knowledge File Upload",
+      "summary": "Checks a file's `filename` and `bytes` (PDF, Word, Excel, PowerPoint, CSV, text, Markdown, HTML, JSON, EPUB, RTF or a zip of these, up to 25 MB) and returns a one-time upload URL and path.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "add_tenant_knowledge_file",
+      "title": "Add Workspace Knowledge File",
+      "summary": "Adds a PDF, Word, Excel, PowerPoint, CSV, text, Markdown, HTML, JSON, EPUB, RTF or zip file as a knowledge source from exactly one of `path` (after a signed upload), `content_base64` (up to 8 MB) or `file_url`, and queues it.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "list_tenant_pinned_answers",
+      "title": "List Workspace Pinned Answers",
+      "summary": "Lists the workspace's pinned answers: question and answer pairs the owner approved, which the assistant uses before any other knowledge.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "upsert_tenant_pinned_answer",
+      "title": "Upsert Workspace Pinned Answer",
+      "summary": "Creates a pinned answer, or replaces the one with `id`: a `question`, up to 10 other phrasings in `alternates`, and the `answer` (up to 4,000 characters).",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "delete_tenant_pinned_answer",
+      "title": "Delete Workspace Pinned Answer",
+      "summary": "Deletes the pinned answer `id` from the workspace; the assistant stops using it at once.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "test_tenant_pinned_answer",
+      "title": "Test Workspace Pinned Answer",
+      "summary": "Shows which pinned answer the assistant would use for `question`, without counting a use.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": true
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Reaches people or systems outside the workspace: a customer, an email or phone address, a web address the user names, or a connected third-party account."
+      }
+    },
+    {
       "name": "search_tenant_knowledge",
       "title": "Search Workspace Knowledge",
       "summary": "Searches approved chunks from the workspace's enabled, ready website sources for `query`.",
@@ -4604,6 +5204,36 @@
       }
     },
     {
+      "name": "list_tenant_knowledge_item_texts",
+      "title": "List Workspace Knowledge Item Texts",
+      "summary": "Returns the text read from pictures and heard in recordings in workspace `tenant_id`'s knowledge (images, scanned PDF pages, audio/video transcripts), newest 100 or only source `source_id`: each item's citation URL, title, origin, current text, the machine-read original and whether the owner correct",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Only reads data in a workspace the signed-in user belongs to; it changes nothing.",
+        "destructiveHint": "Reads only, so nothing is changed or removed.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
+      "name": "correct_tenant_knowledge_item_text",
+      "title": "Correct Workspace Knowledge Item Text",
+      "summary": "Replaces the machine-read text of picture or recording item `item_url` in knowledge source `source_id` with `text`, and queues the source so answers use the correction.",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "openWorldHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Changes data in a workspace the signed-in user manages, or acts on its behalf.",
+        "destructiveHint": "Changes or removes workspace data, so it is marked destructive and Claude asks the user before every call.",
+        "openWorldHint": "Acts only inside the user's own Busymate AI workspace."
+      }
+    },
+    {
       "name": "connect_commerce",
       "title": "Connect Commerce",
       "summary": "Connects a workspace's WooCommerce store at `store_url` using a consumer key and secret, and queues its first catalogue read.",
@@ -4651,7 +5281,7 @@
     {
       "name": "list_tenant_conversations",
       "title": "List Workspace Conversations",
-      "summary": "Lists a workspace's recent and currently live conversations.",
+      "summary": "Lists a workspace's recent and live conversations with channel, turn_count, tool_call_count and outcome.",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,

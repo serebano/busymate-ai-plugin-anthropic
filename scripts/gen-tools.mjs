@@ -2,6 +2,7 @@
 // Regenerates submission/tools.json from the LIVE server, as a signed-in Claude
 // client (OAuth client registered with the claude.ai callback) sees it.
 //
+//   node scripts/gen-tools.mjs   # pre-auth view: lazy auth lists the whole profile
 //   BUSYMATE_MCP_TOKEN=<reviewer token> node scripts/gen-tools.mjs
 import fs from 'node:fs';
 import path from 'node:path';
@@ -11,9 +12,8 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'submission/tools.json');
 const url = 'https://busymate.ai/mcp';
 const token = process.env.BUSYMATE_MCP_TOKEN;
-if (!token) { console.error('gen-tools: set BUSYMATE_MCP_TOKEN'); process.exit(1); }
 
-const res = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json, text/event-stream', 'mcp-protocol-version': '2025-06-18', authorization: `Bearer ${token}` }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/list', params: {} }) });
+const res = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json', accept: 'application/json, text/event-stream', 'mcp-protocol-version': '2025-06-18', ...(token ? { authorization: `Bearer ${token}` } : {}) }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/list', params: {} }) });
 const text = await res.text();
 const body = text.startsWith('{') ? text : text.split('\n').filter((l) => l.startsWith('data:')).map((l) => l.slice(5)).pop();
 const tools = JSON.parse(body).result.tools;
