@@ -2,7 +2,7 @@
 
 ## 1.1.3
 
-- `submission/tools.json` regenerated from the live server (347 tools): adds `get_tenant_setup_progress`. `scripts/validate.mjs` ok.
+- `submission/tools.json` regenerated from the live server (393 tools): 46 live tools were undeclared (adds `get_tenant_setup_progress`, artifact comments, channel links, knowledge downloads and more). `scripts/scan-live.mjs` reports 0 problems. `scripts/validate.mjs` ok.
 
 ## 1.1.2
 
