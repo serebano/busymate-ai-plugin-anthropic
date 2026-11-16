@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.3
+
+- `submission/tools.json` regenerated from the live server (393 tools): 46 live tools were undeclared (adds `get_tenant_setup_progress`, artifact comments, channel links, knowledge downloads and more). `scripts/scan-live.mjs` reports 0 problems. `scripts/validate.mjs` ok.
+
 ## 1.1.2
 
 - `submission/tools.json` regenerated from the live server (346 tools): 48 live tools were undeclared and 6 declared tools had been retired. `scripts/scan-live.mjs` reports 0 problems.
